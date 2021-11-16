@@ -37,19 +37,15 @@ void inputCommand() {
   printf("Masukkan command: ");
   scanf("%d", &command);
   while (command < 1 || command > 1) {
-    switch (command){
-      case 1:
-        printf("%s memilih Roll.", playerName[playerTurn]);
-        printf("%s mengocok dadu.", playerName[playerTurn]);
-        break;
-      default:    
-        printf("Input tidak valid, harap masukkan bilangan 1.\n");
-        printf("Masukkan command: ");
-        scanf("%d", &command);
-        continue;
-    }
-
-    break;
+    printf("Input tidak valid, harap masukkan bilangan 1.\n");
+    printf("Masukkan command: ");
+    scanf("%d", &command);
+  }
+  switch (command){
+    case 1:
+      printf("%s memilih Roll.\n", playerName[playerTurn]);
+      printf("%s mengocok dadu.\n", playerName[playerTurn]);
+      break; 
   }
 }
 

@@ -1,8 +1,8 @@
 #ifndef gameplay_H
 #define gameplay_H
 
-#include "boolean.h"
-#include "queueRenamed.h"
+#include "../ADT/boolean.h"
+#include "../ADT/queueRenamed.h"
 
 Queue playerQueue;
 int playerLocation[5], playerTurn;
