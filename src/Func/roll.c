@@ -5,6 +5,15 @@
 #include <math.h>
 #include <time.h>
 
+void roll() {
+    printf("%s memilih Roll.\n", playerName[playerTurn]);
+    printf("%s mengocok dadu.\n", playerName[playerTurn]);
+    diceRoll(); // Perlu konfigurasi buff senter dari fitur Skill & Buff (Ryu)
+    checkMove(); // Perlu konfigurasi map fitur MAP (Rachmad)
+    moveOption();
+    hasMoved = true;
+}
+
 // Perlu memiliki nilai senterPembesarExist, senterPengecilExist (dari Skill/Buff (Ryu))
 
 void diceRoll() {
@@ -80,12 +89,8 @@ void moveOption() {
 
   backwardExist = false;
   forwardExist = false;
-  
 }
 
 void movePlayer(int moveLocation) {
   playerLocation[playerTurn] = moveLocation;
-
-  AddElmtQueue(&playerQueue, InfoHead(playerQueue));
-  DelElmtQueue(&playerQueue, &InfoHead(playerQueue));
 }

@@ -25,11 +25,11 @@ typedef struct { infotype * T;   /* tabel penyimpan elemen */
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika Q adalah Queue, maka akses elemen : */
-#define Head(Q) (Q).HEAD
-#define Tail(Q) (Q).TAIL
-#define InfoHead(Q) (Q).T[(Q).HEAD]
-#define InfoTail(Q) (Q).T[(Q).TAIL]
-#define MaxEl(Q) (Q).MaxEl
+#define HeadQueue(Q) (Q).HEAD
+#define TailQueue(Q) (Q).TAIL
+#define InfoHeadQueue(Q) (Q).T[(Q).HEAD]
+#define InfoTailQueue(Q) (Q).T[(Q).TAIL]
+#define MaxElQueue(Q) (Q).MaxEl
 
 /* ********* Prototype ********* */
 boolean IsEmptyQueue (Queue Q);
