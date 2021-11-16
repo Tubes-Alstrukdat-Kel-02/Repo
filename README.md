@@ -40,10 +40,13 @@ Sebaiknya ADT yang digunakan direname agar penamaan ADT tidak redundan (error). 
 
 ## Cara Compile
 - Di linux: 
-  - Masuk ke dalam shell (apapun)
-  - Ketik "gcc main.c src/*/*.c -o play" di shell
-  - Untuk mengeksekusi program, ketik "./play" di shell
+  - Pastikan sudah menginstall gcc / mingw versi terbaru
+  - Masuk ke dalam terminal/shell
+  - Ketik "gcc main.c src/*/*.c -o linuxPlay" di shell
+  - Untuk mengeksekusi program, ketik "./linuxPlay" di shell
 - Di windows:
-  - Masuk ke dalam shell (apapun)
-  - Ketik "gcc main.c src/ADT/queueRenamed.c src/Func/gameplay.c src/Func/roll.c -o play.exe"
+  - Pastikan sudah menginstall gcc / mingw versi terbaru
+  - Masuk ke dalam terminal/shell
+  - Ketik "gcc main.c src/ADT/queueRenamed.c src/Func/gameplay.c src/Func/roll.c -o winPlay.exe"
+    - Tambahkan file .c yang lain jika belum ada di command di atas 
   - Untuk mengeksekusi program, klik dua kali program tersebut
