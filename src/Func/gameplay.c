@@ -3,6 +3,8 @@
 #include <stdio.h>
 
 void initializePlayerQueue() {
+  int i;
+  
   printf("Masukkan jumlah player: ");
   scanf("%d", &nbPlayer);
   while (nbPlayer < 1 || nbPlayer > 4) {

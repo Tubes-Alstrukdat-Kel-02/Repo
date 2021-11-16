@@ -4,8 +4,6 @@
 #include "../ADT/boolean.h"
 #include "../ADT/queueRenamed.h"
 
-int i;
-
 Queue playerQueue;
 int playerLocation[5], playerTurn;
 int nbPlayer;
