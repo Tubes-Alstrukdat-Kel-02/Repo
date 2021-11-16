@@ -4,6 +4,7 @@
 #include "../ADT/boolean.h"
 #include "../ADT/queueRenamed.h"
 
+int i;
 int rollResult;
 
 // INGET ADA INI DISINI
