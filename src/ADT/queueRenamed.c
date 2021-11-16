@@ -8,14 +8,14 @@
 boolean IsEmptyQueue (Queue Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 {
-	return Head(Q)==Nil&&Tail(Q)==Nil;
+	return HeadQueue(Q)==Nil&&TailQueue(Q)==Nil;
 }
 
 boolean IsFullQueue (Queue Q)
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
-/* yaitu mengandung elemen sebanyak MaxEl */
+/* yaitu mengandung elemen sebanyak MaxElQueue */
 {
-	return NBElmtQueue(Q)==MaxEl(Q);
+	return NBElmtQueue(Q)==MaxElQueue(Q);
 }
 
 int NBElmtQueue (Queue Q)
@@ -24,10 +24,10 @@ int NBElmtQueue (Queue Q)
 	if(IsEmptyQueue(Q)){
 		return 0;
 	}else{
-		if(Head(Q)<=Tail(Q)){
-			return Tail(Q)-Head(Q)+1;
+		if(HeadQueue(Q)<=TailQueue(Q)){
+			return TailQueue(Q)-HeadQueue(Q)+1;
 		}else{
-			return MaxEl(Q)-Head(Q)+Tail(Q)+1;
+			return MaxElQueue(Q)-HeadQueue(Q)+TailQueue(Q)+1;
 		}
 	}
 }
@@ -37,15 +37,15 @@ void CreateEmptyQueue (Queue * Q, int Max)
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
-/* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
+/* atau : jika alokasi gagal, Q kosong dg MaxElQueue=0 */
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 {
 	(*Q).T=(infotype*) malloc((Max+1)*sizeof(infotype));
 	if((*Q).T!=NULL){
-		Head(*Q)=Nil;Tail(*Q)=Nil;
-		MaxEl(*Q)=Max;
+		HeadQueue(*Q)=Nil;TailQueue(*Q)=Nil;
+		MaxElQueue(*Q)=Max;
 	}else{
-		MaxEl(*Q)=0;
+		MaxElQueue(*Q)=0;
 	}
 }
 
@@ -53,9 +53,9 @@ void CreateEmptyQueue (Queue * Q, int Max)
 void DeAlokasiQueue (Queue * Q)
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
-/* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
+/* F.S. Q menjadi tidak terdefinisi lagi, MaxElQueue(Q) diset 0 */
 {
-	MaxEl(*Q)=0;
+	MaxElQueue(*Q)=0;
 	free((*Q).T);
 }
 /* *** Primitif Add/Delete *** */
@@ -65,16 +65,16 @@ void AddElmtQueue (Queue * Q, infotype X)
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
 {
 	if(IsEmptyQueue(*Q)){
-		Head(*Q)=1;
-		Tail(*Q)=1;
+		HeadQueue(*Q)=1;
+		TailQueue(*Q)=1;
 	}else{
-		if(Tail(*Q)!=MaxEl(*Q)){
-			Tail(*Q)++;
+		if(TailQueue(*Q)!=MaxElQueue(*Q)){
+			TailQueue(*Q)++;
 		}else{
-			Tail(*Q)=1;
+			TailQueue(*Q)=1;
 		}
 	}
-	InfoTail(*Q)=X;
+	InfoTailQueue(*Q)=X;
 }
 
 void DelElmtQueue (Queue * Q, infotype * X)
@@ -83,15 +83,15 @@ void DelElmtQueue (Queue * Q, infotype * X)
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
 {
-	*X=InfoHead(*Q);
+	*X=InfoHeadQueue(*Q);
 	if(NBElmtQueue(*Q)==1){
-		Head(*Q)=Nil;
-		Tail(*Q)=Nil;
+		HeadQueue(*Q)=Nil;
+		TailQueue(*Q)=Nil;
 	}else{
-		if(Head(*Q)!=MaxEl(*Q)){
-			Head(*Q)++;
+		if(HeadQueue(*Q)!=MaxElQueue(*Q)){
+			HeadQueue(*Q)++;
 		}else{
-			Head(*Q)=1;
+			HeadQueue(*Q)=1;
 		}
 	}
 }

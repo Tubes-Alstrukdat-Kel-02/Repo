@@ -11,6 +11,8 @@ int rollResult;
 #define MaxRoll 10
 #define HalfMaxRoll ((MaxRoll/2)+1)
 
+void roll();
+
 int senterPembesarExist, senterPengecilExist;
 int rollResult;
 
@@ -22,7 +24,7 @@ void diceRoll(); // done
 
 boolean forwardExist, backwardExist;
 int backwardLocation, forwardLocation;
-int locationMap[16];
+int locationMap[100];
 
 void checkMove(); // Cek dulu fitur MAP (Rachmad)
 /* Mengecek playerLocation +- rollResult, jika terdapat nilai hasil yang sesuai dengan yang ada di peta, maka nilai boolean forwardExist dan/atau backwardExist menjadi true */
