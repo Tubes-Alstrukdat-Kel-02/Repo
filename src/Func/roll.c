@@ -81,7 +81,7 @@ void moveOption() {
   
 }
 
-void movePlayer(moveLocation) {
+void movePlayer(int moveLocation) {
   playerLocation[playerTurn] = moveLocation;
 
   AddElmtQueue(&playerQueue, InfoHead(playerQueue));
