@@ -36,7 +36,7 @@ void checkMove() {
   int mapSize = sizeof(locationMap)/sizeof(locationMap[0]);
   forwardLocation = playerLocation[playerTurn] + rollResult;
   backwardLocation = playerLocation[playerTurn] - rollResult;
-  for (int i = 0; i < mapSize; i++) {
+  for (i = 0; i < mapSize; i++) {
     if (forwardLocation == locationMap[i]) {
       forwardExist = true;
     }

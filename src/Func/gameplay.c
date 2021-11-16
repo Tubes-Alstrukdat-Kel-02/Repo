@@ -13,7 +13,7 @@ void initializePlayerQueue() {
     scanf("%d", &nbPlayer);
   }
   CreateEmptyQueue(&playerQueue, nbPlayer+1);
-  for (int i = 0; i < nbPlayer; i++) {
+  for (i = 0; i < nbPlayer; i++) {
     printf("Masukkan nama player %d: ", i+1);
     scanf("%s", playerName[i]);
     playerLocation[i] = 0;
