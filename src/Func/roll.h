@@ -1,8 +1,8 @@
 #ifndef roll_H
 #define roll_H
 
-#include "boolean.h"
-#include "queueRenamed.h"
+#include "../ADT/boolean.h"
+#include "../ADT/queueRenamed.h"
 
 int rollResult;
 

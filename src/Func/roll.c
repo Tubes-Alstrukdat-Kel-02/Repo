@@ -21,6 +21,8 @@ void diceRoll() {
 }
 
 void checkMove() {
+  int i;
+  
   printf("%s mendapatkan angka %d.\n", playerName[playerTurn], rollResult);
   int mapSize = sizeof(locationMap)/sizeof(locationMap[0]);
   forwardLocation = playerLocation[playerTurn] + rollResult;
@@ -81,7 +83,7 @@ void moveOption() {
   
 }
 
-void movePlayer(moveLocation) {
+void movePlayer(int moveLocation) {
   playerLocation[playerTurn] = moveLocation;
 
   AddElmtQueue(&playerQueue, InfoHead(playerQueue));

@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <math.h>
-#include "roll.h"
-#include "gameplay.h"
+#include "src/Func/roll.h"
+#include "src/Func/gameplay.h"
+
 
 // GLOBAL
 Queue playerQueue;
