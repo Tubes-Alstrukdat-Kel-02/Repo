@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "roll.h": "c",
+        "inspect.h": "c",
+        "gameplay.h": "c"
+    }
+}
