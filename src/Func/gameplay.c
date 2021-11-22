@@ -34,6 +34,7 @@ void roundLoop() {
     }
 
     turnLoop();
+    PushStack(&round,playerLocation);
   } while (playerLocation[playerTurn] != 15);
 }
 
@@ -51,6 +52,9 @@ void turnLoop() {
     playerTurn = InfoHeadQueue(playerQueue);
 }
 
+void initializestack(){
+  createEmptyStack(&round);
+}
 void inputCommand() {
   printf("\n");
   printf("Menu:\n");
@@ -117,6 +121,7 @@ void commandSwitchCase() {
       }
     case 8:
       printf("Fitur Undo belum dibuat.\n");
+      PopStack(&round,playerLocation);
       commandSwitchCase();
       break;
   }

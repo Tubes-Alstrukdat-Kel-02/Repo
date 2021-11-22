@@ -3,12 +3,14 @@
 
 #include "../ADT/boolean.h"
 #include "../ADT/queueRenamed.h"
+#include "../ADT/stack.h"
 
 Queue playerQueue;
 int playerLocation[5], playerTurn;
 int nbPlayer;
 char playerName[5][30];
 boolean turnEnded, hasMoved;
+Stack round;
 
 void initializePlayerQueue(); // done
 /* Membuat array playerName berisi nama pemain sejumlah 1-4, queue playerQueue untuk mengatur giliran bermain, variabel playerLocation berisi bilangan 0 (start point), dan variabel playerTurn berisi Head(playerQueue) untuk menyatakan giliran pemain pertama  */
@@ -18,6 +20,9 @@ void roundLoop();
 
 void turnLoop();
 /* Loop untuk satu giliran pemain */
+
+void initializestack();
+/* membuat stack round */
 
 int command;
 
