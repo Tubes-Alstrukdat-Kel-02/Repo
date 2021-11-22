@@ -7,21 +7,20 @@ TabMap T;
 
 void ReadConfig()
 {
-    int lengthmap, maxroll, totalteleport, sums,i;
-    char map;
+    int lengthmap, maxroll, totalteleport, sums, i;
+    char map[100];
+    char line[100];
     char teleport_info;
     int idx_teleport, idx_tujuan;
-    int i;
     char CC;
 
     FILE *config_file = fopen("config.txt", "r");
 
-    char line[100];
     fgets(line, sizeof(line), config_file);
     lengthmap = atoi(line);
 
     fgets(line, sizeof(line), config_file);
-    map = line;
+    // map = line;
     // masukin tiap char ke map
 
     fgets(line, sizeof(line), config_file);
@@ -37,5 +36,4 @@ void ReadConfig()
     }
     
     fclose(config_file);
-    return 0;
 }

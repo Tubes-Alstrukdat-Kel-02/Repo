@@ -7,7 +7,7 @@ Deskripsi : implementasi mesinkata.h*/
 
 #include "mesin_kata.h"
 #include <stdio.h>
-#include "boolean.h"
+#include "../ADT/boolean.h"
 
 /* State Mesin Kata */
 boolean EndKata;
@@ -54,11 +54,11 @@ void STARTKATA()
     IgnoreBlank();
     if (CC == MARK)
     {
-        EndKata = TRUE;
+        EndKata = true;
     }
     else
     {
-        EndKata = FALSE;
+        EndKata = false;
         SalinKata();
     }
 }
@@ -73,7 +73,7 @@ void ADVKATA()
     IgnoreBlank();
     if (CC == MARK)
     {
-        EndKata = TRUE;
+        EndKata = true;
     }
     else
     {

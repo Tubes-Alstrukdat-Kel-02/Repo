@@ -48,10 +48,10 @@ void MakeEmpty (TabMap *T);
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt (TabMap T);
+int NbElmt(TabMap T);
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
-int MaxNbElMap (TabMap T);
+int MaxNbEl(TabMap T);
 /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
 
 /* *** Selektor INDEKS *** */
@@ -65,10 +65,6 @@ ElType GetElmt (TabMap T, IdxType i);
 
 /* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
 /* Untuk type private/limited private pada bahasa tertentu */
-void SetTab (TabMap Tin, TabMap *Tout);
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Assignment THsl -> Tin */
 void SetEl (TabMap *T, IdxType i, ElType v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */

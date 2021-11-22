@@ -19,7 +19,7 @@ int NbElmt (TabMap T)
     return T.Neff;
 }
 
-int MaxNbElMap (TabMap T)
+int MaxNbEl (TabMap T)
 /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */\
 {
     return (IdxMax - IdxMin+1);
@@ -31,7 +31,7 @@ IdxType GetLastIdx (TabMap T)
 /* Mengirimkan indeks elemen terakhir */
 /* *** Menghasilkan sebuah elemen *** */
 {
-    return (IdxMin + NbElmtMap(T)-1);
+    return (IdxMin + NbElmt(T)-1);
 }
 
 ElType GetElmt (TabMap T, IdxType i)
@@ -43,18 +43,6 @@ ElType GetElmt (TabMap T, IdxType i)
 
 /* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
 /* Untuk type private/limited private pada bahasa tertentu */
-void SetTab (TabMap Tin, TabMap *Tout)
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Assignment THsl -> Tin */
-{
-    int i;
-    for (i = 0; i < GetLastIdx(Tin); i++)
-    {
-        SetEl(Tout, i, GetElmt(Tin, i));
-        SetNeff(Tout, NbElmt(Tin));
-    }
-}
 
 void SetEl (TabMap *T, IdxType i, ElType v)
 /* I.S. T terdefinisi, sembarang */

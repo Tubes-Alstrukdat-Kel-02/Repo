@@ -1,8 +1,8 @@
 #ifndef MAP_H 
 #define MAP_H
 
-#include "boolean.h"
-#include "array.h"
+#include "../ADT/boolean.h"
+#include "../ADT/array.h"
 
 void CreateMap(TabMap *T);
 /* I.S. Sembarang */

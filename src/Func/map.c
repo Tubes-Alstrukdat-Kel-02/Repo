@@ -6,7 +6,7 @@ void CreateMap(TabMap *T)
 /* I.S. Sembarang */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin */
 {
-    MakeEmpty(&T);
+    (*T).Neff = 0;
 }
 
 void SetState(TabMap *T, char x, IdxType i)
@@ -30,7 +30,12 @@ void CopyMap(TabMap Tin, TabMap *Tout)
 /* F.S. Tout berisi salinan Tin */
 /* Menyalin Tin ke Tout */
 {
-    SetTab(Tin, &Tout);
+    int i;
+    for (i = 0; i < GetLastIdx(Tin); i++)
+    {
+        SetEl(Tout, i, GetElmt(Tin, i));
+        SetNeff(Tout, NbElmt(Tin));
+    }
 }
 
 void PrintMap(TabMap T)
@@ -51,16 +56,15 @@ boolean CheckTeleport(TabMap T, IdxType x)
 {
     boolean check;
     int i = 0;
-    check = FALSE;
+    check = false;
     while (i <= T.Neff)
     {
         if (T.Elmt[i].teleport == x)
         {
-            check = TRUE;
+            check = true;
         }
         i++;
     }
 
     return check;
 }
-
