@@ -41,13 +41,6 @@ Sebaiknya ADT yang digunakan direname agar penamaan ADT tidak redundan (error). 
 
 ## Notes
  - Map dan Teleporter
-    typedef struct 
-    {
-	      ElType TI [IdxMax-IdxMin+1]; 
-	      int Neff;
-    } TabInt;
-
-    Notes :
     - Map
       ElType TI berisi nomer petak
       Contoh : Map : "....#."
