@@ -1,5 +1,4 @@
 #include "roll.h"
-#include "inspect.h"
 #include "gameplay.h"
 #include <stdio.h>
 
@@ -89,7 +88,7 @@ void commandSwitchCase() {
       commandSwitchCase();
       break;
     case 4:
-      inspect();
+      printf("Fitur Inspect belum dibuat.\n");
       commandSwitchCase();
       break;
     case 5:

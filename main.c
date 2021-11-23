@@ -1,6 +1,5 @@
 #include "konfigurasiManual.h"
 #include "src/Func/roll.h"
-#include "src/Func/inspect.h"
 #include "src/Func/gameplay.h"
 
 
