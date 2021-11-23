@@ -1,34 +1,39 @@
 #ifndef MAP_H 
 #define MAP_H
 
-#include "boolean.h"
-#include "array.h"
+#include "../ADT/boolean.h"
+#include "../ADT/array.h"
 
-void CreateMap(TabMap *T);
+void Map();
+/* Akan mencetak map dengan letak pemain untuk setiap pemain */
+
+void CreateMap(TabInt *T);
 /* I.S. Sembarang */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin */
 
-void SetState(TabMap *T, char x, IdxType i);
+void SetMap(TabInt *T, IdxType i, int x);
 /* I.S. T terdefinisi, sembarang */
-/* F.S. Elemen status tabel ke i menjadi x */
-/* Mengeset elemen status tabel ke i dengan x */
+/* F.S. Elemen tabel ke i menjadi x */
+/* Mengeset elemen  tabel ke i dengan x */
 
-void SetTeleport(TabMap *T, IdxType x, IdxType i);
+void SetTeleport(TabInt *T, IdxType i, IdxType x);
+/* I.S. T terdefinisi, sembarang */
+/* F.S. Elemen teleport tabel ke i menjadi x */
+/* Mengeset elemen telport tabel ke i dengan x */
+
+void PrintPosPlayer(TabInt T, int PlayerLoc);
+
+void PrintTeleport(TabInt T, int x);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen tujuan teleport tabel ke i menjadi x */
 /* Mengeset elemen teleport tabel ke i dengan x */
 
-void CopyMap(TabMap Tin, TabMap *Tout);
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Menyalin Tin ke Tout */
-
-void PrintMap(TabMap T);
+void PrintMap(TabInt T);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Map tertampil di layar */
 /* Menampilkan map ke layar */
 
-boolean CheckTeleport(TabMap T, IdxType x);
+boolean CheckTeleport(TabInt T, IdxType x);
 /* Mengecek apakah teleport telah ada atau belum */
 
 #endif

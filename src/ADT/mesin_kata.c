@@ -1,13 +1,7 @@
-/* 
-NIM : 18220049
-Nama : Rachmad Hidayat
-Tanggal : 22 September 2021
-Topik praktikum : Pra Praktikum 3
-Deskripsi : implementasi mesinkata.h*/
+ /* Implementasi mesin_kata.h*/
 
 #include "mesin_kata.h"
 #include <stdio.h>
-#include "boolean.h"
 
 /* State Mesin Kata */
 boolean EndKata;
@@ -19,7 +13,7 @@ void IgnoreBlank()
    F.S. : CC ≠ BLANK atau CC = MARK */
 
 {
-    while ((CC == BLANK) && (CC != MARK))
+    while (CC == BLANK)
     {
         ADV();
     }
@@ -34,33 +28,34 @@ void SalinKata()
           CC adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 {
-    int i = 1;
-    while ((CC != BLANK) && (CC != MARK) && (i <= NMax))
+    int i = 0;
+    do
     {
         CKata.TabKata[i] = CC;
         ADV();
         i++;
-    }
-    CKata.Length = i - 1;
+    } while ((CC != BLANK) && (CC != MARK) && (i <= 50));
+    CKata.Length = i;
 }  
 
-void STARTKATA()
+void STARTKATA(FILE *file)
 /* I.S. : CC sembarang
    F.S. : EndKata = true, dan CC = MARK;
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
           CC karakter pertama sesudah karakter terakhir kata */
 {
-    START();
+    START(file);
     IgnoreBlank();
     if (CC == MARK)
     {
-        EndKata = TRUE;
+        EndKata = true;
     }
     else
     {
-        EndKata = FALSE;
+        EndKata = false;
         SalinKata();
     }
+    IgnoreBlank();
 }
 
 void ADVKATA()
@@ -73,11 +68,20 @@ void ADVKATA()
     IgnoreBlank();
     if (CC == MARK)
     {
-        EndKata = TRUE;
+        EndKata = true;
     }
     else
     {
         SalinKata();
-        IgnoreBlank();
     }
+    IgnoreBlank();
+}
+
+int StrToInt(Kata w) {
+    int x = 0;
+    int i;
+    for (i = 0; i < w.Length; i++) {
+        x = 10*x + ((int)w.TabKata[i]-48);
+    }
+    return x;
 }

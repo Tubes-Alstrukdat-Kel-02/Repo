@@ -2,61 +2,103 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void CreateMap(TabMap *T)
+/* void MAP()
+{
+    for (i = 0; i < nbPlayer; i++)
+    {
+        PrintPosPlayer(Layout_Map, PlayerLocation[i]);
+    }
+} */
+
+void CreateMap(TabInt *T)
 /* I.S. Sembarang */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin */
 {
-    MakeEmpty(&T);
+    SetNeff(T,0);
 }
 
-void SetState(TabMap *T, char x, IdxType i)
+void SetMap(TabInt *T, IdxType i, int x)
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen status tabel ke i menjadi x */
 /* Mengeset elemen status tabel ke i dengan x */
 {
-    (*T).Elmt[i].state = x;
+    (*T).TI[i] = x;
 }
 
-void SetTeleport(TabMap *T, IdxType x, IdxType i)
+void SetTeleport(TabInt *T, IdxType i, IdxType x)
+/* I.S. T terdefinisi, sembarang */
+/* F.S. Elemen teleport tabel ke i menjadi x */
+/* Mengeset elemen telport tabel ke i dengan x */
+{
+    (*T).TI[i] = x;
+}
+
+void PrintTeleport(TabInt T, int x)
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen tujuan teleport tabel ke i menjadi x */
 /* Mengeset elemen teleport tabel ke i dengan x */
 {
-    (*T).Elmt[i].teleport = x;
+    int i = 0;
+    for(i = 0; i < x; i++)
+    {
+        if (T.TI[i] != 0)
+        {
+            printf("%d %d\n", i+1, T.TI[i]);
+        }
+    }
 }
 
-void CopyMap(TabMap Tin, TabMap *Tout)
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Menyalin Tin ke Tout */
-{
-    SetTab(Tin, &Tout);
-}
-
-void PrintMap(TabMap T)
+void PrintMap(TabInt T)
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Map tertampil di layar */
 /* Menampilkan map ke layar */
 {
-    int i = 0;
-    for(i = 0; i <= T.Neff; i++)
+    int k = 0;
+    for(k = 0; k < T.Neff; k++)
     {
-        printf("%c", T.Elmt[i].state);
+        if (T.TI[k] != 0)
+        {
+            printf(".");
+        }
+        else
+        {
+             printf("#");
+        }
     }
     printf("\n");
 }
 
-boolean CheckTeleport(TabMap T, IdxType x)
+void PrintPosPlayer(TabInt T, int PlayerLoc)
+{
+    int i = 0;
+    for(i = 0; i < lengthMap; i++)
+    {
+        if (T.TI[i] == PlayerLoc)
+        {
+            printf("*");
+        }
+        else if (T.TI[i] == 0)
+        {
+            printf("#");
+        }
+        else
+        {
+            printf(".");
+        }
+    }
+}
+
+boolean CheckTeleport(TabInt T, IdxType x)
 /* Mengecek apakah teleport telah ada atau belum */
 {
     boolean check;
     int i = 0;
-    check = FALSE;
-    while (i <= T.Neff)
+    check = false;
+    while (i <= T.Neff && !check)
     {
-        if (T.Elmt[i].teleport == x)
+        if (T.TI[i] == x)
         {
-            check = TRUE;
+            check = true;
         }
         i++;
     }

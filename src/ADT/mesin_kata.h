@@ -4,14 +4,13 @@
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
 
-#include "boolean.h"
-#include "mesin_kar.h"
+#include "../ADT/boolean.h"
+#include "../ADT/mesin_kar.h"
 
-#define NMax 100
 #define BLANK ' '
 
 typedef struct {
-  char TabKata[NMax+1]; /* container penyimpan kata, indeks yang dipakai [1..NMax] */
+  char TabKata[50]; /* container penyimpan kata, indeks yang dipakai [1..NMax] */
     int Length;
 } Kata;
 
@@ -23,6 +22,11 @@ void IgnoreBlank();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : CC sembarang
    F.S. : CC ≠ BLANK atau CC = MARK */
+
+void IgnoreEnter();
+/* Mengabaikan satu atau beberapa ENTER
+   I.S. : currentChar sembarang 
+   F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
 void SalinKata();
 /* Mengakuisisi kata, menyimpan dalam CKata
@@ -45,5 +49,7 @@ void ADVKATA();
           Jika CC = MARK, EndKata = true.
    Proses : Akuisisi kata menggunakan procedure SalinKata */
 
+int StrToInt(Kata kat);
+/* Mengubah string menjadi integer */
 
 #endif
