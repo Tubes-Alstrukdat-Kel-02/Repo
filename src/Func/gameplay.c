@@ -34,6 +34,8 @@ void roundLoop() {
     }
 
     turnLoop();
+
+    // 15 disini jangan lupa ganti sama variable finish line
   } while (playerLocation[playerTurn] != 15);
 }
 
@@ -66,12 +68,11 @@ void inputCommand() {
 }
 
 void commandSwitchCase() {
-  printf("\n");
-  printf("Masukkan command: ");
+  printf("\nMasukkan command: ");
   scanf("%d", &command);
   while (command < 1 || command > 8) {
-    printf("Input tidak valid, harap masukkan bilangan 1.\n");
-    printf("Masukkan command: ");
+    printf("Input tidak valid, harap masukkan bilangan 1-8.\n");
+    printf("\nMasukkan command: ");
     scanf("%d", &command);
   }
   switch (command){
