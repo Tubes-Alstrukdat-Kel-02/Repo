@@ -1,20 +1,29 @@
 #include "map.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "gameplay.h"
 
-/* void MAP()
+extern TabInt Layout_Map;
+extern int nbPlayer;
+extern Queue playerQueue;
+
+
+void MAP()
+/* Akan mencetak map dengan letak pemain untuk setiap pemain */
 {
+    int i;
     for (i = 0; i < nbPlayer; i++)
     {
-        PrintPosPlayer(Layout_Map, PlayerLocation[i]);
+        printf("%s : ", playerName[i]);
+        PrintPosPlayer(Layout_Map, playerLocation[i]);
     }
-} */
+}
 
 void CreateMap(TabInt *T)
 /* I.S. Sembarang */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin */
 {
-    SetNeff(T,0);
+    (*T).Neff = 0;
 }
 
 void SetMap(TabInt *T, IdxType i, int x)
@@ -71,7 +80,7 @@ void PrintMap(TabInt T)
 void PrintPosPlayer(TabInt T, int PlayerLoc)
 {
     int i = 0;
-    for(i = 0; i < lengthMap; i++)
+    for(i = 0; i < T.Neff; i++)
     {
         if (T.TI[i] == PlayerLoc)
         {

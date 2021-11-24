@@ -4,7 +4,11 @@
 #include "../ADT/boolean.h"
 #include "../ADT/array.h"
 
-void Map();
+extern TabInt Layout_Map;
+extern int nbPlayer;
+extern Queue playerQueue;
+
+void MAP();
 /* Akan mencetak map dengan letak pemain untuk setiap pemain */
 
 void CreateMap(TabInt *T);

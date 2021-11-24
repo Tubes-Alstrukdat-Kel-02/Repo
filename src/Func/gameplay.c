@@ -1,5 +1,6 @@
 #include "roll.h"
 // #include "inspect.h"
+#include "map.h"
 #include "gameplay.h"
 #include <stdio.h>
 
@@ -80,7 +81,7 @@ void commandSwitchCase() {
       commandSwitchCase();
       break;
     case 2:
-      printf("Fitur Map belum dibuat.\n");
+      MAP();
       commandSwitchCase();
       break;
     case 3:

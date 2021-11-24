@@ -4,11 +4,12 @@
 #include "../ADT/boolean.h"
 #include "../ADT/queueRenamed.h"
 
+extern int MaxRoll;
+
 int rollResult;
 
 // INGET ADA INI DISINI
 // NANTI KONFIGURASIIN YG BENER
-#define MaxRoll 10
 #define HalfMaxRoll ((MaxRoll/2)+1)
 
 void roll();

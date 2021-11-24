@@ -10,7 +10,8 @@ extern int lengthMap;
 extern int MaxRoll;
 extern int TotalTeleport;
 
-void readFile();
-
+void ReadFile();
+void SaveFile();
+void LoadFile();
 
 #endif

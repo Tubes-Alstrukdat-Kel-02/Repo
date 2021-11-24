@@ -5,6 +5,8 @@
 #include <math.h>
 #include <time.h>
 
+extern int MaxRoll;
+
 void roll() {
     printf("%s memilih Roll.\n", playerName[playerTurn]);
     printf("%s mengocok dadu.\n", playerName[playerTurn]);
