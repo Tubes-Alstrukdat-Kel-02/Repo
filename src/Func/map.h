@@ -6,7 +6,8 @@
 
 extern TabInt Layout_Map;
 extern int nbPlayer;
-extern Queue playerQueue;
+extern char playerName[5][30];
+extern int playerLocation[5];
 
 void MAP();
 /* Akan mencetak map dengan letak pemain untuk setiap pemain */

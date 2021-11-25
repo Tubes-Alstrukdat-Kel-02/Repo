@@ -4,6 +4,25 @@
 #include "gameplay.h"
 #include <stdio.h>
 
+int lengthMap;
+void welcomeGame()
+{
+  printf("\n");
+  printf("_______________________________________ TUGAS BESAR IF2111 ALGORITMA DAN STRUKTUR DATA KELOMPOK 2 _______________________________________\n");
+  printf("|                                                                                                                                       |\n");
+  printf("|  xxxx   xxxx     xxxxxxxx    xxxxxxxxx    xxxxxxxxx   xxxxxxxxxxx       xxx       xxxx    xxx    xxxxxxxx     xxxxxxxx        xxx     |\n"); 
+  printf("| xxxxxx xxxxxx   xxx    xxx   xxx    xxx      xxx          xxx         xxx xxx     xxxxx   xxx   xxx    xxx   xxx    xxx     xxx xxx   |\n"); 
+  printf("| xxx xxxxx xxx   xxx    xxx   xxx    xxx      xxx          xxx        xxx   xxx    xxxxxx  xxx   xxx          xxx           xxx   xxx  |\n");
+  printf("| xxx  xxx  xxx   xxx    xxx   xxxxxxxxx       xxx          xxx       xxxxxxxxxxx   xxx xxx xxx   xxx          xxx          xxxxxxxxxxx |\n"); 
+  printf("| xxx       xxx   xxx    xxx   xxx    xxx      xxx          xxx       xxx     xxx   xxx  xxxxxx   xxx   xxxx   xxx   xxxx   xxx     xxx |\n"); 
+  printf("| xxx       xxx   xxx    xxx   xxx    xxx      xxx          xxx       xxx     xxx   xxx   xxxxx   xxx    xxx   xxx    xxx   xxx     xxx |\n"); 
+  printf("| xxx       xxx    xxxxxxxx    xxxxxxxxx    xxxxxxxxx       xxx       xxx     xxx   xxx    xxxx    xxxxxxxx     xxxxxxxx    xxx     xxx |\n");
+  printf("|_______________________________________________________________________________________________________________________________________|\n");
+  printf("\n");
+  printf("                                       #####!!! SELAMAT DATANG DI PERMAINAN MOBITANGGA !!!#####                                      \n");
+  printf("\n");
+}
+
 void initializePlayerQueue() {
   int i;
   
@@ -18,7 +37,7 @@ void initializePlayerQueue() {
   for (i = 0; i < nbPlayer; i++) {
     printf("Masukkan nama player %d: ", i+1);
     scanf("%s", playerName[i]);
-    playerLocation[i] = 0;
+    playerLocation[i] = 1;
     AddElmtQueue(&playerQueue, i);
   }
 }
@@ -35,7 +54,7 @@ void roundLoop() {
     }
 
     turnLoop();
-  } while (playerLocation[playerTurn] != 15);
+  } while (playerLocation[playerTurn] != lengthMap);
 }
 
 void turnLoop() {

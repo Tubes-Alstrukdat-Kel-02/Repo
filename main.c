@@ -16,6 +16,7 @@ int MaxRoll;
 int TotalTeleport;
 
 int main() {
+  welcomeGame();
   initializePlayerQueue();
   ReadFile();
   roundLoop();

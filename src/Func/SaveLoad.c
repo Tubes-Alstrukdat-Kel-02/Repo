@@ -66,12 +66,28 @@ void ReadFile()
     fclose(fp);
 }
 
-void SaveFile()
+void SaveFile()//belum kelar nunggu skill
 {
+    char name[20];
+    FILE *fp;
+    printf("Masukkan nama save file : ");
+    pita = stdin;
+    STARTKATA(pita);
+
+    scanf("%s", name);
+    
+    char filename[100];
+    strcat(filename, "../data/");
+    strcat(filename, name);
+    strcat(filename, ".txt");
+
+    fp = fopen(filename, "w");
+    // save file
+
 
 }
 
-void LoadFile()
+void LoadFile() //belum kelar
 {
     CreateMap(&Layout_Map);
     CreateMap(&Teleporter);

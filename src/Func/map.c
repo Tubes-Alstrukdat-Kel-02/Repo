@@ -3,9 +3,10 @@
 #include <stdio.h>
 #include "gameplay.h"
 
-extern TabInt Layout_Map;
-extern int nbPlayer;
-extern Queue playerQueue;
+TabInt Layout_Map;
+int nbPlayer;
+char playerName[5][30];
+int playerLocation[5];
 
 
 void MAP()
@@ -16,6 +17,7 @@ void MAP()
     {
         printf("%s : ", playerName[i]);
         PrintPosPlayer(Layout_Map, playerLocation[i]);
+        printf(" %d\n", playerLocation[i]);
     }
 }
 
@@ -44,8 +46,8 @@ void SetTeleport(TabInt *T, IdxType i, IdxType x)
 
 void PrintTeleport(TabInt T, int x)
 /* I.S. T terdefinisi, sembarang */
-/* F.S. Elemen tujuan teleport tabel ke i menjadi x */
-/* Mengeset elemen teleport tabel ke i dengan x */
+/* F.S. Teleport tertampil ke layar */
+/* Menampilkan teleport ke layar */
 {
     int i = 0;
     for(i = 0; i < x; i++)
