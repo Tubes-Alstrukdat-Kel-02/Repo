@@ -1,7 +1,7 @@
 # Tubes-AlStrukDat
 
 ## Panduan Gameplay
-Demo dapat dilihat [disini](https://replit.com/@18219076Yahya/Tubes-AlStrukDat-Kel02-1)
+Demo dapat dilihat [disini](https://replit.com/@18219076Yahya/Repo)
 
   1. Game dimulai
   2. Inisialisasi player queue, setiap player dimasukkan ke dalam satu queue. Co: 1, 2, 3, 4
