@@ -17,7 +17,7 @@ void inspect () {
     printf("Masukkan petak: ");
     scanf("%d", &startTeleport);
     /* Mengecek apakah petak ada dalam Map atau tidak */
-    while (IsIdxEff(Layout_Map, startTeleport-1)) {
+    while (startTeleport < 1 || startTeleport > lengthMap) {
         printf("Petak tidak boleh melebihi panjang peta.\n");
         printf("Masukkan petak: ");
         scanf("%d", &startTeleport);
