@@ -31,12 +31,12 @@ void checkInspect () {
 tidak memiliki reporter, petak tersebut kosong atau terlarang */
     if (foundTeleport(Teleporter, startTeleport-1)) {
         endTeleport = GetElmt(Teleporter, startTeleport-1);
-        printf("Petak %d memiliki teleporter menuju petak %d.", startTeleport, endTeleport);
+        printf("Petak %d memiliki teleporter menuju petak %d.\n", startTeleport, endTeleport);
     } else { /* Petak tidak memiliki teleporter */
         if (isPetakEmpty(Layout_Map, startTeleport-1)) {
-            printf("Petak %d merupakan petak kosong.", startTeleport);
+            printf("Petak %d merupakan petak kosong.\n", startTeleport);
         } else { /* Petak tidak kosong */
-            printf("Petak %d merupakan petak terlarang.", startTeleport);
+            printf("Petak %d merupakan petak terlarang.\n", startTeleport);
         }
     }
 }
