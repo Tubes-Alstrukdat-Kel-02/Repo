@@ -55,7 +55,7 @@ Sebaiknya ADT yang digunakan direname agar penamaan ADT tidak redundan (error). 
       - Contoh : 
         - Array Teleporter : [2,0,0,6] 
         - Maka index ke 0 yaitu petak ke 1 memiliki teleport dengan petak keluar teleporter di petak ke 2,
-        - Index ke 2 yaitu petak ke 2 bukan teleport
+        - Index ke 2 yaitu petak ke 3 bukan teleport
 
       - Jika ElType TI berisi angka 0 maka petak ke-(index+1) tersebut bukan  teleport
       - Jika ElType TI berisi angka selain 0 maka petak ke-(index+1) tersebut merupakan teleport, ElType TI tersebut merupakan petak tujuan dari teleport
