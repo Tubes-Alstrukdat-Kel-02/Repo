@@ -44,7 +44,7 @@ void turnLoop() {
     turnEnded = false;
 
     printf("\n!!! Sekarang giliran %s\n", playerName[playerTurn]);
-    check_jumlah_skill(playerTurn, MaxRoll);
+    check_jumlah_skill(playerTurn);
     do {
       inputCommand();
     } while (turnEnded == false);
@@ -79,7 +79,6 @@ void commandSwitchCase() {
   switch (command){
     case 1:
       skill_menu(playerTurn);
-      commandSwitchCase();
       break;
     case 2:
       printf("Fitur Map belum dibuat.\n");

@@ -5,58 +5,60 @@
 #include <time.h>
 
 void skill_menu(playerTurn) {
-    printf("Kamu memiliki skill :\n");
-    if (NBElmtList(skill_list[playerTurn]) != 0) {
-        show_skill_list(playerTurn);
-    } else {
-        printf("Maaf, anda tidak memiliki skill yang dapat dipakai.\n");
-    }
-    printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill.\n");
-    printf("Masukkan skill : ");
-    scanf("%d", &no_pilihan);
-    if ((no_pilihan > 0) && (no_pilihan < NBElmtList(skill_list[playerTurn])) ) {
-        addressList p = SearchOrder(no_pilihan, playerTurn);
-        switch (Skill_id(p)) {
-        case (1) :
-            //Pintu ga ke mana mana
-            break;
-        case (2) :
-            //Mesin waktu
-            break;
-        case (3) :
-            //Baling baling jambu
-            break;
-        case (4) :
-            //Cermin pengganda
-            break;
-        case (5) :
-            //Senter pembesar hoki
-            break;
-        case (6) :
-            //Senter pengecil hoki
-            break;
-        case (7) :
-            //Mesin penukar posisi
-            break;
-        }
-    }
-    else if (no_pilihan < 0) {
-        no_pilihan = -no_pilihan;
-        if (no_pilihan > NBElmtList(skill_list[playerTurn])) {
-            printf("Tidak ada skill dengan nomor tersebut. Harap masukkan nomor yang terdapat pada skill list.\n");
-            skill_menu(playerTurn);
-        } else {
-            addressList p = SearchOrder(no_pilihan, playerTurn);
-            DelP(&skill_list[playerTurn], skill_id(p));
-        }
-    }
-    else if (no_pilihan > NBElmtList(skill_list[playerTurn])) {
-        printf("Tidak ada skill dengan nomor tersebut. Harap masukkan nomor yang terdapat pada skill list.\n");
-        skill_menu(playerTurn);
-    }
-    else {
-        inputCommand();
-    }
+  printf("Kamu memiliki skill :\n");
+  if (NBElmtList(skill_list[playerTurn]) != 0) {
+      show_skill_list(playerTurn);
+  } else {
+      printf("Maaf, anda tidak memiliki skill yang dapat dipakai.\n");
+  }
+  printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill.\n");
+  printf("Masukkan skill : ");
+  scanf("%d", &no_pilihan);
+  if ((no_pilihan > 0) && (no_pilihan < NBElmtList(skill_list[playerTurn])) ) {
+      addressList p = SearchOrder(no_pilihan, playerTurn);
+      switch (Skill_id(p)) {
+      case (1) :
+          //Pintu ga ke mana mana
+          break;
+      case (2) :
+          //Mesin waktu
+          break;
+      case (3) :
+          //Baling baling jambu
+          break;
+      case (4) :
+          //Cermin pengganda
+          break;
+      case (5) :
+          //Senter pembesar hoki
+          break;
+      case (6) :
+          //Senter pengecil hoki
+          break;
+      case (7) :
+          //Mesin penukar posisi
+          break;
+      inputCommand();
+      }
+  }
+  else if (no_pilihan < 0) {
+      no_pilihan = -no_pilihan;
+      if (no_pilihan > NBElmtList(skill_list[playerTurn])) {
+          printf("Tidak ada skill dengan nomor tersebut. Harap masukkan nomor yang terdapat pada skill list.\n");
+          skill_menu(playerTurn);
+      } else {
+          addressList p = SearchOrder(no_pilihan, playerTurn);
+          DelP(&skill_list[playerTurn], Skill_id(p));
+          inputCommand();
+      }
+  }
+  else if (no_pilihan > NBElmtList(skill_list[playerTurn])) {
+      printf("Tidak ada skill dengan nomor tersebut. Harap masukkan nomor yang terdapat pada skill list.\n");
+      skill_menu(playerTurn);
+  }
+  else {
+      inputCommand();
+  }
 }
 
 void check_jumlah_skill(playerTurn) {
@@ -117,20 +119,21 @@ void show_skill_list(playerTurn) {
     int count = 1;
     while (p != Nil) {
         if (Skill_id(p) == 1) {
-            printf("%d. Pintu Ga Ke Mana Mana\n", &count);
+            printf("%d. Pintu Ga Ke Mana Mana\n", count);
         } else if (Skill_id(p) == 2) {
-            printf("%d. Mesin Waktu %d\n", &count, Amount(p));
+            printf("%d. Mesin Waktu %d\n", count, Amount(p));
         } else if (Skill_id(p) == 3) {
-            printf("%d. Baling Baling Jambu %d\n", &count, Amount(p));
+            printf("%d. Baling Baling Jambu %d\n", count, Amount(p));
         } else if (Skill_id(p) == 4) {
-            printf("%d. Cermin Pengganda\n", &count);
+            printf("%d. Cermin Pengganda\n", count);
         } else if (Skill_id(p) == 5) {
-            printf("%d. Senter Pembesar Hoki\n", &count);
+            printf("%d. Senter Pembesar Hoki\n", count);
         } else if (Skill_id(p) == 6) {
-            printf("%d. Senter Pengecil Hoki\n", &count);
+            printf("%d. Senter Pengecil Hoki\n", count);
         } else if (Skill_id(p) == 7) {
-            printf("%d. Mesin Penukar Posisi\n", &count);
+            printf("%d. Mesin Penukar Posisi\n", count);
         }
         count++;
+        p = Next(p);
     }
 }

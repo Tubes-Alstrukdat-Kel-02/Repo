@@ -1,4 +1,4 @@
-#include "konfigurasiManual.h"
+// #include "konfigurasiManual.h"
 #include "src/Func/roll.h"
 #include "src/Func/gameplay.h"
 #include "src/Func/skill.h"

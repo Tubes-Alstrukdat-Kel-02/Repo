@@ -102,7 +102,7 @@ void DelVLast (List *L, infotype *X, infotype *Y) {
     DelLast(L, &p);
     *X = Skill_id(p);
     *Y = Amount(p);
-    Dealokasi(&p);
+    Dealokasi(p);
 }
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
@@ -198,9 +198,9 @@ void DelP (List *L, infotype X) {
     p = Search(*L, X);
     if (p != Nil) {
         if (Prev(p) != Nil)
-            DelAfter(L, p, Prev(p));
+            DelAfter(L, &p, Prev(p));
         else if (Next(p) != Nil)
-            DelBefore(L, p, Next(p));
+            DelBefore(L, &p, Next(p));
         else
             CreateEmpty(L);
         Dealokasi(p);
@@ -278,7 +278,7 @@ void PrintBackward (List L) {
     printf("]");
 }
 
-int NbElmtList (List L) {
+int NBElmtList (List L) {
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
     int jumlah = 0;
     addressList p;

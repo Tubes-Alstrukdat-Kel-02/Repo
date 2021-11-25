@@ -107,21 +107,25 @@ void DelFirst (List *L, addressList *P);
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
+
 void DelLast (List *L, addressList *P);
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen pertama yg lama, jika ada */
+
 void DelP (List *L, infotype X);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddressList P, dengan Skill_id(P)=X*/
 /* maka P dihapus dari list dan didealokasi */
 /* Jika tidak ada elemen list dengan Skill_id(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
+
 void DelAfter (List *L, addressList *Pdel, addressList Prec);
 /* I.S. List tidak kosong. Prec adalah anggota list. */
 /* F.S. Menghapus Next(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */
+
 void DelBefore (List *L, addressList *Pdel, addressList Succ);
 /* I.S. List tidak kosong. Succ adalah anggota list. */
 /* F.S. Menghapus Prev(Succ): */
@@ -142,7 +146,7 @@ void PrintBackward (List L);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [30,20,1] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-int NbElmtList (List L);
+int NBElmtList (List L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
 #endif
