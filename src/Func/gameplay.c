@@ -2,25 +2,68 @@
 #include "inspect.h"
 #include "map.h"
 #include "gameplay.h"
+#include "SaveLoad.h"
 #include <stdio.h>
 
 int lengthMap;
+
 void welcomeGame()
 {
   printf("\n");
-  printf("______________________________ TUGAS BESAR IF2111 ALGORITMA DAN STRUKTUR DATA KELOMPOK 2 ________________________\n");
-  printf("|                                                                                                               |\n");
-  printf("| xxx    xxx    xxxxxx    xxxxxxx    xxxxxx  xxxxxxxxxx    xxx      xxx    xx    xxxxxxx    xxxxxxx      xxx    |\n"); 
-  printf("| xxxx  xxxx   xx    xx   xx    xx     xx        xx       xx xx     xxxx   xx   xx    xx   xx    xx     xx xx   |\n"); 
-  printf("| xx xxxx xx   xx    xx   xx    xx     xx        xx      xx   xx    xxxxx  xx   xx         xx          xx   xx  |\n");
-  printf("| xx  xx  xx   xx    xx   xxxxxxx      xx        xx     xxxxxxxxx   xx xx  xx   xx         xx         xxxxxxxxx |\n"); 
-  printf("| xx      xx   xx    xx   xx    xx     xx        xx     xx     xx   xx  xxxxx   xx   xxx   xx   xxx   xx     xx |\n"); 
-  printf("| xx      xx   xx    xx   xx    xx     xx        xx     xx     xx   xx    xxx   xx    xx   xx    xx   xx     xx |\n"); 
-  printf("| xx      xx    xxxxxx    xxxxxxx    xxxxxx      xx     xx     xx   xx     xx    xxxxxxx    xxxxxxx   xx     xx |\n");
-  printf("|_______________________________________________________________________________________________________________|\n");
+  printf("________________________ TUGAS BESAR IF2111 ALGORITMA DAN STRUKTUR DATA KELOMPOK 2 ________________________\n");
+  printf("|                                                                                                         |\n");
+  printf("|   xxx   xxx    xxxxxx   xxxxxxx   xxxxxx  xxxxxxxx     xxx     xx    xx   xxxxxxx   xxxxxxx     xxx     |\n"); 
+  printf("|  xxxxx xxxxx  xx    xx  xx    xx    xx       xx       xx xx    xxx   xx  xx    xx  xx    xx    xx xx    |\n"); 
+  printf("|  xx xxxxx xx  xx    xx  xx    xx    xx       xx      xx   xx   xxxxx xx  xx        xx         xx   xx   |\n");
+  printf("|  xx  xxx  xx  xx    xx  xxxxxxx     xx       xx     xxxxxxxxx  xx xx xx  xx        xx        xxxxxxxxx  |\n"); 
+  printf("|  xx       xx  xx    xx  xx    xx    xx       xx     xx     xx  xx  xxxx  xx   xxx  xx   xxx  xx     xx  |\n"); 
+  printf("|  xx       xx  xx    xx  xx    xx    xx       xx     xx     xx  xx   xxx  xx    xx  xx    xx  xx     xx  |\n"); 
+  printf("|  xx       xx   xxxxxx   xxxxxxx   xxxxxx     xx     xx     xx  xx    xx   xxxxxxx   xxxxxxx  xx     xx  |\n");
+  printf("|_________________________________________________________________________________________________________|\n");
   printf("\n");
-  printf("                                #####!!! SELAMAT DATANG DI PERMAINAN MOBITANGGA !!!#####                         \n");
+  printf("                          #####!!! SELAMAT DATANG DI PERMAINAN MOBITANGGA !!!#####                         \n");
   printf("\n");
+}
+
+void MainMenu()
+{
+  printf("Main Menu:\n");
+  printf("1. New Game\n");
+  printf("2. Load Game\n");
+  printf("3. Exit\n\n");
+  printf("Masukkan command : ");
+  scanf("%d", &commandMain);
+  printf("\n");
+
+  boolean cekCommand;
+  cekCommand = false;
+
+  if (commandMain == 1)
+  {
+    initializePlayerQueue();
+    ReadFile();
+    cekCommand = true;
+  }
+    else if (commandMain == 2)
+  {
+          // Function Load belum dibuat
+    cekCommand = true;
+  }
+  else if (commandMain == 3)
+  {
+        // Function exit belum dibuat
+    cekCommand = true;
+  }
+
+  while (cekCommand = false)
+  {
+    if (commandMain < 1 | commandMain > 3)
+    {
+      printf("Masukkan command : ");
+      scanf("%d", &commandMain);
+      printf("\n");
+    }
+  }
 }
 
 void initializePlayerQueue() {
@@ -49,8 +92,10 @@ void roundLoop() {
       round = round + 1;
       // SILAHKAN RESET BUFF DISINI
 
-      printf("\n!!! RONDE %d\n", round);
+      printf("\n#####!!! RONDE %d !!!######\n", round);
     }
+    printf("\n");
+    MAP();
 
     turnLoop();
   } while (playerLocation[playerTurn] != lengthMap);
@@ -60,7 +105,7 @@ void turnLoop() {
     hasMoved = false;
     turnEnded = false;
 
-    printf("\n!!! Sekarang giliran %s\n", playerName[playerTurn]);
+    printf("\n#####!!! Sekarang giliran %s !!!#####\n", playerName[playerTurn]);
     do {
       inputCommand();
     } while (turnEnded == false);
@@ -107,6 +152,7 @@ void commandSwitchCase() {
       break;
     case 4:
       inspect();
+      commandSwitchCase();
       break;
     case 5:
       if (hasMoved) {
@@ -140,5 +186,5 @@ void commandSwitchCase() {
 }
 
 void playerWin() {
-  printf("\n!!! Selamat, %s telah memenangkan permainan.\n", playerName[playerTurn]);
+  printf("\n!!! Selamat, %s telah memenangkan permainan. !!!\n", playerName[playerTurn]);
 }
