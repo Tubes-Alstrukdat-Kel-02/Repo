@@ -8,18 +8,18 @@ int lengthMap;
 void welcomeGame()
 {
   printf("\n");
-  printf("_______________________________________ TUGAS BESAR IF2111 ALGORITMA DAN STRUKTUR DATA KELOMPOK 2 _______________________________________\n");
-  printf("|                                                                                                                                       |\n");
-  printf("|  xxxx   xxxx     xxxxxxxx    xxxxxxxxx    xxxxxxxxx   xxxxxxxxxxx       xxx       xxxx    xxx    xxxxxxxx     xxxxxxxx        xxx     |\n"); 
-  printf("| xxxxxx xxxxxx   xxx    xxx   xxx    xxx      xxx          xxx         xxx xxx     xxxxx   xxx   xxx    xxx   xxx    xxx     xxx xxx   |\n"); 
-  printf("| xxx xxxxx xxx   xxx    xxx   xxx    xxx      xxx          xxx        xxx   xxx    xxxxxx  xxx   xxx          xxx           xxx   xxx  |\n");
-  printf("| xxx  xxx  xxx   xxx    xxx   xxxxxxxxx       xxx          xxx       xxxxxxxxxxx   xxx xxx xxx   xxx          xxx          xxxxxxxxxxx |\n"); 
-  printf("| xxx       xxx   xxx    xxx   xxx    xxx      xxx          xxx       xxx     xxx   xxx  xxxxxx   xxx   xxxx   xxx   xxxx   xxx     xxx |\n"); 
-  printf("| xxx       xxx   xxx    xxx   xxx    xxx      xxx          xxx       xxx     xxx   xxx   xxxxx   xxx    xxx   xxx    xxx   xxx     xxx |\n"); 
-  printf("| xxx       xxx    xxxxxxxx    xxxxxxxxx    xxxxxxxxx       xxx       xxx     xxx   xxx    xxxx    xxxxxxxx     xxxxxxxx    xxx     xxx |\n");
-  printf("|_______________________________________________________________________________________________________________________________________|\n");
+  printf("______________________________ TUGAS BESAR IF2111 ALGORITMA DAN STRUKTUR DATA KELOMPOK 2 ________________________\n");
+  printf("|                                                                                                               |\n");
+  printf("| xxx    xxx    xxxxxx    xxxxxxx    xxxxxx  xxxxxxxxxx    xxx      xxx    xx    xxxxxxx    xxxxxxx      xxx    |\n"); 
+  printf("| xxxx  xxxx   xx    xx   xx    xx     xx        xx       xx xx     xxxx   xx   xx    xx   xx    xx     xx xx   |\n"); 
+  printf("| xx xxxx xx   xx    xx   xx    xx     xx        xx      xx   xx    xxxxx  xx   xx         xx          xx   xx  |\n");
+  printf("| xx  xx  xx   xx    xx   xxxxxxx      xx        xx     xxxxxxxxx   xx xx  xx   xx         xx         xxxxxxxxx |\n"); 
+  printf("| xx      xx   xx    xx   xx    xx     xx        xx     xx     xx   xx  xxxxx   xx   xxx   xx   xxx   xx     xx |\n"); 
+  printf("| xx      xx   xx    xx   xx    xx     xx        xx     xx     xx   xx    xxx   xx    xx   xx    xx   xx     xx |\n"); 
+  printf("| xx      xx    xxxxxx    xxxxxxx    xxxxxx      xx     xx     xx   xx     xx    xxxxxxx    xxxxxxx   xx     xx |\n");
+  printf("|_______________________________________________________________________________________________________________|\n");
   printf("\n");
-  printf("                                       #####!!! SELAMAT DATANG DI PERMAINAN MOBITANGGA !!!#####                                      \n");
+  printf("                                #####!!! SELAMAT DATANG DI PERMAINAN MOBITANGGA !!!#####                         \n");
   printf("\n");
 }
 
