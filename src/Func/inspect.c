@@ -33,6 +33,8 @@ void checkInspect () {
 }
 
 // BELUM BERES
+//cek
+//cek 2
 boolean foundTeleport () {
    // return 
 }
