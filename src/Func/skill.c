@@ -15,7 +15,7 @@ void skill_menu(playerTurn) {
     printf("Masukkan skill : ");
     scanf("%d", &no_pilihan);
     if ((no_pilihan > 0) && (no_pilihan < NBElmtList(skill_list[playerTurn])) ) {
-        address p = SearchOrder(no_pilihan, playerTurn);
+        addressList p = SearchOrder(no_pilihan, playerTurn);
         switch (Skill_id(p)) {
         case (1) :
             //Pintu ga ke mana mana
@@ -46,7 +46,7 @@ void skill_menu(playerTurn) {
             printf("Tidak ada skill dengan nomor tersebut. Harap masukkan nomor yang terdapat pada skill list.\n");
             skill_menu(playerTurn);
         } else {
-            address p = SearchOrder(no_pilihan, playerTurn);
+            addressList p = SearchOrder(no_pilihan, playerTurn);
             DelP(&skill_list[playerTurn], skill_id(p));
         }
     }
@@ -59,7 +59,7 @@ void skill_menu(playerTurn) {
     }
 }
 
-void check_jumlah_skill(playerTurn, MaxRoll) {
+void check_jumlah_skill(playerTurn) {
     if (NBElmtList(skill_list[playerTurn]) >= 10) {
         printf("Tidak mendapat skill karena sudah penuh (maksimal 10).\n");
     } else {
@@ -70,11 +70,11 @@ void check_jumlah_skill(playerTurn, MaxRoll) {
             InsVLast(&skill_list[playerTurn], 1, 0);
             printf("Anda mendapatkan skill Pintu Ga Ke Mana Mana!");
         } else if ((gacha_skill >= 11) && (gacha_skill <= 20)) { //Mesin waktu 10%
-            int jumlah_mundur = roll_skill_langkah(MaxRoll);
+            int jumlah_mundur = roll_skill_langkah(10 /*diganti jadi MaxRoll*/);
             InsVLast(&skill_list[playerTurn], 2, jumlah_mundur);
             printf("Anda mendapatkan skill Mesin Waktu %d!", jumlah_mundur);
         } else if ((gacha_skill >= 21) && (gacha_skill <= 30)) { //Baling baling jambu 10%
-            int jumlah_maju = roll_skill_langkah(MaxRoll);
+            int jumlah_maju = roll_skill_langkah(10 /*diganti jadi MaxRoll*/);
             InsVLast(&skill_list[playerTurn], 3, jumlah_maju);
             printf("Anda mendapatkan skill Baling Baling Jambu %d!", jumlah_maju);
         } else if ((gacha_skill >= 31) && (gacha_skill <= 36)) { //Cermin pengganda 6%
@@ -95,14 +95,14 @@ void check_jumlah_skill(playerTurn, MaxRoll) {
     }
 }
 
-int roll_skill_langkah (MaxRoll) {
+int roll_skill_langkah () {
     srand(time(NULL));
-    return (rand() % (MaxRoll + 1 - 1) + 1);
+    return (rand() % (10 + 1 - 1) + 1);
 }
 
-address SearchOrder(no_pilihan, playerTurn) {
+addressList SearchOrder(no_pilihan, playerTurn) {
     int count = 1;
-    address p;
+    addressList p;
     p = First(skill_list[playerTurn]);
     while (count != no_pilihan) {
         count++;
@@ -112,7 +112,7 @@ address SearchOrder(no_pilihan, playerTurn) {
 }
 
 void show_skill_list(playerTurn) {
-    address p;
+    addressList p;
     p = First(skill_list[playerTurn]);
     int count = 1;
     while (p != Nil) {
