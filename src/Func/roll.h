@@ -24,6 +24,8 @@ void diceRoll(); // done
 /* Jika tidak memiliki buff akan menggunakan dadu chance */
 
 boolean forwardExist, backwardExist;
+char teleportStrChoice;
+boolean teleportBoolChoice;
 int backwardLocation, forwardLocation;
 int locationMap[100];
 
@@ -37,5 +39,12 @@ void moveOption(); // done
 
 void movePlayer(int moveLocation); // Cek dulu fitur MAP (Rachmad)
 /*  */
+
+void moveOtherPlayer(int player, int moveLocation); // Cek dulu fitur MAP (Rachmad)
+/*  */
+
+void teleportOptions(int location);
+void immuneOptions();
+void immuneSwitch();
 
 #endif

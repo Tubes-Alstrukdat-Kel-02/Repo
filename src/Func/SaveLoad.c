@@ -3,10 +3,10 @@
 #include <string.h>
 static FILE * pita;
 
-    TabInt Layout_Map, Teleporter;
-    int lengthMap;
-    int MaxRoll;
-    int TotalTeleport;
+TabInt Layout_Map, Teleporter;
+int lengthMap;
+int MaxRoll;
+int TotalTeleport;
 
 void ReadFile()
 {

@@ -1,5 +1,5 @@
 #include "roll.h"
-// #include "inspect.h"
+#include "inspect.h"
 #include "map.h"
 #include "gameplay.h"
 #include <stdio.h>
@@ -106,8 +106,7 @@ void commandSwitchCase() {
       commandSwitchCase();
       break;
     case 4:
-      // inspect();
-      commandSwitchCase();
+      inspect();
       break;
     case 5:
       if (hasMoved) {
