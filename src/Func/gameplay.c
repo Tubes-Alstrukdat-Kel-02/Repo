@@ -1,5 +1,6 @@
 #include "roll.h"
 #include "gameplay.h"
+#include "skill.h"
 #include <stdio.h>
 
 void initializePlayerQueue() {
@@ -43,6 +44,7 @@ void turnLoop() {
     turnEnded = false;
 
     printf("\n!!! Sekarang giliran %s\n", playerName[playerTurn]);
+    check_jumlah_skill(playerTurn, MaxRoll);
     do {
       inputCommand();
     } while (turnEnded == false);
@@ -76,7 +78,7 @@ void commandSwitchCase() {
   }
   switch (command){
     case 1:
-      printf("Fitur Skill belum dibuat.\n");
+      skill_menu(playerTurn);
       commandSwitchCase();
       break;
     case 2:
