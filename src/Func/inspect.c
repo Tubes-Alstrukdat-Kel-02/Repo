@@ -1,16 +1,22 @@
 #include "gameplay.h"
 #include "inspect.h"
+#include "map.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
 
+extern TabInt Layout_Map, Teleporter;
+IdxType startTeleport;
+ElType endTeleport;
+
+
+//TINGGAL NAMBAHIN KOMEN
 void inspect () {
     printf("Masukkan petak: ");
     scanf("%d", &startTeleport);
     // banyak N buah petak tergantung dalam file konfigurasi. 
-    // Di sini N = 15
-    while (startTeleport < 1 || startTeleport > 15 ) {
+    while (IsIdxEff(Layout_Map, startTeleport-1)) {
         printf("petak tidak valid.\n");
         printf("Masukkan petak: ");
         scanf("%d", &startTeleport);
@@ -19,12 +25,11 @@ void inspect () {
 }
 
 void checkInspect () {
-    int i = 0;
-    foundTeleport();
-    if (foundTeleport) {
-        printf("Petak %d memiliki teleporter menuju %d.", startTeleport, endTeleport);
+    if (foundTeleport(Teleporter, startTeleport-1)) {
+        endTeleport = GetElmt(Teleporter, startTeleport-1);
+        printf("Petak %d memiliki teleporter menuju petak %d.", startTeleport, endTeleport);
     } else {
-        if (isPetakEmpty) {
+        if (isPetakEmpty(Layout_Map, startTeleport-1)) {
             printf("Petak %d merupakan petak kosong.", startTeleport);
         } else {
             printf("Petak %d merupakan petak terlarang.", startTeleport);
@@ -32,14 +37,11 @@ void checkInspect () {
     }
 }
 
-// BELUM BERES
-//cek
-//cek 2
-boolean foundTeleport () {
-   // return 
+boolean foundTeleport (TabInt T, IdxType i) {
+    return (T.TI[i] != 0);
 }
 
-boolean isPetakEmpty () {
-   // return konfigPeta.T[i] == '.';
+boolean isPetakEmpty (TabInt T, IdxType i) {
+    return (T.TI[i] != 0);
 }
 

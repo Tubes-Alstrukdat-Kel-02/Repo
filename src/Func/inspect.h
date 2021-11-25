@@ -2,15 +2,17 @@
 #define INSPECT_H
 
 #include "../ADT/boolean.h"
+#include "../ADT/array.h"
+#include "SaveLoad.h"
 
-int startTeleport;
-int endTeleport;
+extern TabInt Layout_Map, Teleporter;
+IdxType startTeleport;
+ElType endTeleport;
+
 
 void inspect ();
-boolean foundTeleport ();
-boolean isPetakEmpty ();
 void checkInspect ();
-int lengthMap ();
-
+boolean foundTeleport (TabInt T, IdxType i);
+boolean isPetakEmpty (TabInt T, IdxType i);
 
 #endif
