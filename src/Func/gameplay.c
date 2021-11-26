@@ -2,6 +2,7 @@
 #include "inspect.h"
 #include "map.h"
 #include "gameplay.h"
+#include "skill.h"
 #include "SaveLoad.h"
 #include <stdio.h>
 
@@ -106,6 +107,7 @@ void turnLoop() {
     turnEnded = false;
 
     printf("\n#####!!! Sekarang giliran %s !!!#####\n", playerName[playerTurn]);
+    check_jumlah_skill(playerTurn);
     do {
       inputCommand();
     } while (turnEnded == false);
@@ -139,8 +141,7 @@ void commandSwitchCase() {
   }
   switch (command){
     case 1:
-      printf("Fitur Skill belum dibuat.\n");
-      commandSwitchCase();
+      skill_menu(playerTurn);
       break;
     case 2:
       MAP();
