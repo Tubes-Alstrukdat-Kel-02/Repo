@@ -165,7 +165,7 @@ void commandSwitchCase() {
         break;
       }
     case 6:
-      printf("Fitur Save belum dibuat.\n");
+      SaveFile();
       commandSwitchCase();
       break;
     case 7:

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <time.h>
 
-void skill_menu(playerTurn) {
+void skill_menu(int playerTurn) {
   printf("Kamu memiliki skill :\n");
   if (NBElmtList(skill_list[playerTurn]) != 0) {
       show_skill_list(playerTurn);
@@ -61,7 +61,7 @@ void skill_menu(playerTurn) {
   }
 }
 
-void check_jumlah_skill(playerTurn) {
+void check_jumlah_skill(int playerTurn) {
     if (NBElmtList(skill_list[playerTurn]) >= 10) {
         printf("Tidak mendapat skill karena sudah penuh (maksimal 10).\n");
     } else {
@@ -102,7 +102,7 @@ int roll_skill_langkah () {
     return (rand() % (10 + 1 - 1) + 1);
 }
 
-addressList SearchOrder(no_pilihan, playerTurn) {
+addressList SearchOrder(int no_pilihan, int playerTurn) {
     int count = 1;
     addressList p;
     p = First(skill_list[playerTurn]);
@@ -113,7 +113,7 @@ addressList SearchOrder(no_pilihan, playerTurn) {
     return p;
 }
 
-void show_skill_list(playerTurn) {
+void show_skill_list(int playerTurn) {
     addressList p;
     p = First(skill_list[playerTurn]);
     int count = 1;
