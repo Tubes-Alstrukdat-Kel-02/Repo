@@ -1,11 +1,31 @@
 #include "roll.h"
+#include "inspect.h"
+#include "map.h"
 #include "gameplay.h"
 #include "skill.h"
 #include <stdio.h>
 
+int lengthMap;
+void welcomeGame()
+{
+  printf("\n");
+  printf("______________________________ TUGAS BESAR IF2111 ALGORITMA DAN STRUKTUR DATA KELOMPOK 2 ________________________\n");
+  printf("|                                                                                                               |\n");
+  printf("| xxx    xxx    xxxxxx    xxxxxxx    xxxxxx  xxxxxxxxxx    xxx      xxx    xx    xxxxxxx    xxxxxxx      xxx    |\n"); 
+  printf("| xxxx  xxxx   xx    xx   xx    xx     xx        xx       xx xx     xxxx   xx   xx    xx   xx    xx     xx xx   |\n"); 
+  printf("| xx xxxx xx   xx    xx   xx    xx     xx        xx      xx   xx    xxxxx  xx   xx         xx          xx   xx  |\n");
+  printf("| xx  xx  xx   xx    xx   xxxxxxx      xx        xx     xxxxxxxxx   xx xx  xx   xx         xx         xxxxxxxxx |\n"); 
+  printf("| xx      xx   xx    xx   xx    xx     xx        xx     xx     xx   xx  xxxxx   xx   xxx   xx   xxx   xx     xx |\n"); 
+  printf("| xx      xx   xx    xx   xx    xx     xx        xx     xx     xx   xx    xxx   xx    xx   xx    xx   xx     xx |\n"); 
+  printf("| xx      xx    xxxxxx    xxxxxxx    xxxxxx      xx     xx     xx   xx     xx    xxxxxxx    xxxxxxx   xx     xx |\n");
+  printf("|_______________________________________________________________________________________________________________|\n");
+  printf("\n");
+  printf("                                #####!!! SELAMAT DATANG DI PERMAINAN MOBITANGGA !!!#####                         \n");
+  printf("\n");
+}
+
 void initializePlayerQueue() {
   int i;
-  
   printf("Masukkan jumlah player: ");
   scanf("%d", &nbPlayer);
   while (nbPlayer < 2 || nbPlayer > 4) {
@@ -17,7 +37,7 @@ void initializePlayerQueue() {
   for (i = 0; i < nbPlayer; i++) {
     printf("Masukkan nama player %d: ", i+1);
     scanf("%s", playerName[i]);
-    playerLocation[i] = 0;
+    playerLocation[i] = 1;
     AddElmtQueue(&playerQueue, i);
   }
 }
@@ -34,9 +54,7 @@ void roundLoop() {
     }
 
     turnLoop();
-
-    // 15 disini jangan lupa ganti sama variable finish line
-  } while (playerLocation[playerTurn] != 15);
+  } while (playerLocation[playerTurn] != lengthMap);
 }
 
 void turnLoop() {
@@ -81,7 +99,7 @@ void commandSwitchCase() {
       skill_menu(playerTurn);
       break;
     case 2:
-      printf("Fitur Map belum dibuat.\n");
+      MAP();
       commandSwitchCase();
       break;
     case 3:
@@ -89,8 +107,7 @@ void commandSwitchCase() {
       commandSwitchCase();
       break;
     case 4:
-      printf("Fitur Inspect belum dibuat.\n");
-      commandSwitchCase();
+      inspect();
       break;
     case 5:
       if (hasMoved) {

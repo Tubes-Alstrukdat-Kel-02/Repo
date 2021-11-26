@@ -1,7 +1,7 @@
 # Tubes-AlStrukDat
 
 ## Panduan Gameplay
-Demo dapat dilihat [disini](https://replit.com/@18219076Yahya/Tubes-AlStrukDat-Kel02-1)
+Demo dapat dilihat [disini](https://replit.com/@18219076Yahya/Repo)
 
   1. Game dimulai
   2. Inisialisasi player queue, setiap player dimasukkan ke dalam satu queue. Co: 1, 2, 3, 4
@@ -23,10 +23,12 @@ Demo dapat dilihat [disini](https://replit.com/@18219076Yahya/Tubes-AlStrukDat-K
 
 ## ADT
 Sebaiknya ADT yang digunakan direname agar penamaan ADT tidak redundan (error). Co: Di ADT Queue ada fungsi IsEmpty() bisa direname jadi IsEmptyQueue() atau Add() bisa direname jadi AddElmtQueue().
+
 ### Boolean
  - boolean == unsigned char
  - true == 1
  - false == 0
+
 ### Queue
  - Nil == 0
  - HeadQueue(Q)
@@ -41,7 +43,7 @@ Sebaiknya ADT yang digunakan direname agar penamaan ADT tidak redundan (error). 
  - DeAlokasiQueue (Queue * Q)
  - AddElmtQueue (Queue * Q, infotype X)
  - DelElmtQueue (Queue * Q, infotype * X)
-
+    
 ## Functionality
 ### Gameplay
   - initializePlayerQueue()
@@ -50,7 +52,7 @@ Sebaiknya ADT yang digunakan direname agar penamaan ADT tidak redundan (error). 
   - inputCommand()
   - commandSwitchCase()
   - playerWin()
-   
+
 ### Roll
  - roll()
  - diceRoll()
@@ -58,6 +60,26 @@ Sebaiknya ADT yang digunakan direname agar penamaan ADT tidak redundan (error). 
  - moveOption()
  - movePlayer()
 
+## Notes
+ - Map dan Teleporter
+    - Map
+      - ElType TI berisi nomer petak
+      - Contoh : 
+          - Map : "....#."
+          - maka Array Map : [1,2,3,4,0,6]
+
+      - Jika peta berupa "." maka ElType TI berisi angka bukan nol dan angka merupakan index + 1 
+      - Jika peta berupa "#" maka ElType TI berisi angka 0
+
+    - Teleporter
+      - petak ke i = index+1
+      - Contoh : 
+        - Array Teleporter : [2,0,0,6] 
+        - Maka index ke 0 yaitu petak ke 1 memiliki teleport dengan petak keluar teleporter di petak ke 2,
+        - Index ke 2 yaitu petak ke 3 bukan teleport
+
+      - Jika ElType TI berisi angka 0 maka petak ke-(index+1) tersebut bukan  teleport
+      - Jika ElType TI berisi angka selain 0 maka petak ke-(index+1) tersebut merupakan teleport, ElType TI tersebut merupakan petak tujuan dari teleport
 
 ## Cara Compile
 - Di linux: 

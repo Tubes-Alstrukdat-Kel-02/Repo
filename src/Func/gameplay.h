@@ -9,6 +9,10 @@ int playerLocation[5], playerTurn;
 int nbPlayer;
 char playerName[5][30];
 boolean turnEnded, hasMoved;
+extern int lengthMap;
+
+void welcomeGame();
+/* Pembuka game */
 
 void initializePlayerQueue(); // done
 /* Membuat array playerName berisi nama pemain sejumlah 1-4, queue playerQueue untuk mengatur giliran bermain, variabel playerLocation berisi bilangan 0 (start point), dan variabel playerTurn berisi Head(playerQueue) untuk menyatakan giliran pemain pertama  */
