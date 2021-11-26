@@ -56,7 +56,7 @@ void MainMenu()
     cekCommand = true;
   }
 
-  while (cekCommand = false)
+  while (cekCommand == false)
   {
     if (commandMain < 1 | commandMain > 3)
     {
@@ -106,7 +106,7 @@ void turnLoop() {
     hasMoved = false;
     turnEnded = false;
 
-    printf("\n#####!!! Sekarang giliran %s !!!#####\n", playerName[playerTurn]);
+    printf("\n#####!!! Sekarang giliran %s !!!#####\n\n", playerName[playerTurn]);
     check_jumlah_skill(playerTurn);
     do {
       inputCommand();

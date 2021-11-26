@@ -5,7 +5,7 @@
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty (List L) {
+boolean IsEmptyList (List L) {
 /* Mengirim true jika list kosong. Lihat definisi di atas. */
     return (First(L) == Nil && Last(L) == Nil);
 }
@@ -49,7 +49,7 @@ addressList Search (List L, infotype X) {
 /* Jika ada, mengirimkan addressList elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
     addressList p = First(L);
-    if (!IsEmpty(L)) {
+    if (!IsEmptyList(L)) {
         while (((p) != Nil) && (Skill_id(p) != X)) {
             p = Next(p);
         }
@@ -110,7 +110,7 @@ void DelVLast (List *L, infotype *X, infotype *Y) {
 void InsertFirst (List *L, addressList P) {
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. Menambahkan elemen ber-addressList P sebagai elemen pertama */
-    if (IsEmpty(*L)) {
+    if (IsEmptyList(*L)) {
         First(*L) = P;
         Last(*L) = P;
         Next(P) = Nil;
@@ -123,7 +123,7 @@ void InsertFirst (List *L, addressList P) {
 void InsertLast (List *L, addressList P) {
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
-    if (IsEmpty(*L)) {
+    if (IsEmptyList(*L)) {
         Next(P) = Nil;
         Prev(P) = Nil;
         First(*L) = P;
@@ -246,7 +246,7 @@ void PrintForward (List L) {
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
     printf("[");
-    if (!IsEmpty(L)) {
+    if (!IsEmptyList(L)) {
         addressList P = First(L);
         do {
             printf("%d%d", Skill_id(P), Amount(P));
@@ -266,7 +266,7 @@ void PrintBackward (List L) {
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
     printf("[");
-    if (!IsEmpty(L)) {
+    if (!IsEmptyList(L)) {
         addressList P = Last(L);
         do {
             printf("%d%d", Skill_id(P), Amount(P));

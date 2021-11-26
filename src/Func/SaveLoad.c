@@ -6,6 +6,7 @@ static FILE * pita;
 TabInt Layout_Map, Teleporter;
 int lengthMap;
 int MaxRoll;
+int HalfMaxRoll;
 int TotalTeleport;
 
 void ReadFile()

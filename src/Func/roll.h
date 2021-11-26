@@ -3,7 +3,7 @@
 
 #include "../ADT/boolean.h"
 #include "../ADT/queueRenamed.h"
-#include "../../konfigurasiManual.h"
+// #include "../../konfigurasiManual.h"
 
 extern int MaxRoll;
 

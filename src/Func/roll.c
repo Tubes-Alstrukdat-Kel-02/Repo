@@ -11,6 +11,7 @@
 int imunitasTeleport = 1;
 
 extern int MaxRoll;
+extern int HalfMaxRoll;
 
 void roll() {
     printf("%s memilih Roll.\n", playerName[playerTurn]);
