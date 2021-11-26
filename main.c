@@ -1,4 +1,3 @@
-// #include "konfigurasiManual.h"
 #include "src/Func/roll.h"
 #include "src/Func/inspect.h"
 #include "src/Func/gameplay.h"
@@ -17,9 +16,9 @@ int TotalTeleport;
 
 int main() {
   welcomeGame();
-  initializePlayerQueue();
-  ReadFile();
+  MainMenu();
   roundLoop();
   playerWin();
+  MainMenu();
   return 0;
 }
