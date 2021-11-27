@@ -159,7 +159,7 @@ void saveFile()
     fclose(fp);
 }
 
-void loadFile() //belum kelar
+void loadFile()
 {
     CreateMap(&Layout_Map);
     CreateMap(&Teleporter);
