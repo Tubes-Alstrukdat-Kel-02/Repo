@@ -11,37 +11,40 @@ void skill_menu (int playerTurn);
 // untuk menampilkan menu skill pada saat turn player
 
 void check_jumlah_skill(int playerTurn);
-// untuk mengecek jumlah skill yg dipunya dan menentukan apakah dapat mendapat skill baru atau tidak. Bila bisa maka akan 
-// langsung gacha skill di sini.
+// untuk mengecek jumlah skill yg dipunya dan menentukan apakah dapat mendapat skill baru atau tidak. Bila bisa maka akan menggacha skill di sini.
 
-int roll_skill_langkah ();
+
+int roll_skill_langkah (int MaxRoll);
 // untuk menggacha berapa langkah untuk modifier baling-baling jambu dan mesin waktu
 
-addressList SearchOrder(int no_pilihan, int playerTurn);
+addressList searchOrder(int no_pilihan, int playerTurn);
 // untuk mencari addressList dari skill pilihan player
 
 void show_skill_list(int playerTurn);
 // untuk menampilkan daftar skill yang dimiliki suatu player
 
-void PintuGaKeMana2();
+void gacha_skill(int playerTurn);
+// untuk menggacha skill
+
+void pintuGaKeMana2();
 // untuk skill Pintu ga ke mana mana
 
-void MesinWaktu(int langkah);
+void mesinWaktu(int langkah);
 // untuk skill Mesin waktu
 
-void Baling2Jambu(int langkah);
+void baling2Jambu(int langkah);
 // untuk skill Baling baling jambu
 
-void CerminGanda();
+void cerminGanda(int playerTurn);
 // untuk skill Cermin pengganda
 
-void SenterPembesarHoki();
+void senterPembesarHoki();
 // untuk skill Senter pembesar hoki
 
-void SenterPengecilHoki();
+void senterPengecilHoki();
 // untuk skill Senter pengecil hoki
 
-void MesinPenukarPosisi();
+void mesinPenukarPosisi();
 // untuk skill Mesin penukar posisi
 
 /* 
