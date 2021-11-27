@@ -20,18 +20,19 @@ void skill_menu(int playerTurn) {
       switch (Skill_id(p)) {
       case (1) : //Pintu ga ke mana mana
           if (/*insert cek buff immune teleport*/playerTurn == playerTurn) {
-              pintuGaKeMana2();
+              pintuGaKeMana2(playerTurn);
+              DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           } else {
-              printf("Skill tidak dapat digunakan. Anda sudah memiliki buff Imunitas Teleport.\n\n");
+              printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Imunitas Teleport.\n\n");
               skill_menu(playerTurn);
               break;
           }
       case (2) : //Mesin waktu
-          mesinWaktu(Amount(p));
+          mesinWaktu(playerTurn, Amount(p));
           break;
       case (3) : //Baling baling jambu
-          baling2Jambu(Amount(p));
+          baling2Jambu(playerTurn, Amount(p));
           break;
       case (4) : //Cermin pengganda
           if (NBElmtList(skill_list[playerTurn]) <= 9 /*nanti ditambah kriteria 1/turn*/) {
@@ -39,34 +40,36 @@ void skill_menu(int playerTurn) {
               DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           } else {
-              printf("Skill tidak dapat digunakan. Hanya dapat digunakan saat jumlah skill < 10 dan hanya 1 per turn.\n\n");
+              printf("\nSkill tidak dapat digunakan. Hanya dapat digunakan saat jumlah skill < 10 dan hanya 1 per turn.\n\n");
               skill_menu(playerTurn);
               break;
           }
       case (5) : //Senter pembesar hoki
           if (/*buff SBesarH aktif*/playerTurn == playerTurn) {
-              printf("Skill tidak dapat digunakan. Anda sudah memiliki buff Senter Pembesar Hoki.\n\n");
+              printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Senter Pembesar Hoki.\n\n");
               skill_menu(playerTurn);
               break;
           } else if (/*buff SKecilH aktif*/playerTurn == playerTurn) {
-              printf("Skill tidak dapat digunakan. Anda sudah memiliki buff Senter Pengecil Hoki.\n\n");
+              printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Senter Pengecil Hoki.\n\n");
               skill_menu(playerTurn);
               break;
           } else {
-              senterPembesarHoki();
+              senterPembesarHoki(playerTurn);
+              DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           }
       case (6) : //Senter pengecil hoki
           if (/*buff SBesarH aktif*/playerTurn == playerTurn) {
-              printf("Skill tidak dapat digunakan. Anda sudah memiliki buff Senter Pembesar Hoki.\n\n");
+              printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Senter Pembesar Hoki.\n\n");
               skill_menu(playerTurn);
               break;
           } else if (/*buff SKecilH aktif*/playerTurn == playerTurn) {
-              printf("Skill tidak dapat digunakan. Anda sudah memiliki buff Senter Pengecil Hoki.\n\n");
+              printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Senter Pengecil Hoki.\n\n");
               skill_menu(playerTurn);
               break;
           } else {
-              senterPengecilHoki();
+              senterPengecilHoki(playerTurn);
+              DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           }          
       case (7) : //Mesin penukar posisi
@@ -79,7 +82,7 @@ void skill_menu(int playerTurn) {
   else if (no_pilihan < 0) {
       no_pilihan = -no_pilihan;
       if (no_pilihan > NBElmtList(skill_list[playerTurn])) {
-          printf("Tidak ada skill dengan nomor tersebut. Harap masukkan nomor yang terdapat pada skill list.\n\n");
+          printf("\nTidak ada skill dengan nomor tersebut. Harap masukkan nomor yang terdapat pada skill list.\n\n");
           skill_menu(playerTurn);
       } else {
           addressList p = searchOrder(no_pilihan, playerTurn);
@@ -88,32 +91,32 @@ void skill_menu(int playerTurn) {
           DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
           switch(id) {
           case (1) :
-              printf("%s berhasil membuang skill Pintu Ga Ke Mana Mana!\n", playerName[playerTurn]);
+              printf("\n%s berhasil membuang skill Pintu Ga Ke Mana Mana!\n", playerName[playerTurn]);
               break;
           case (2) :
-              printf("%s berhasil membuang skill Mesin Waktu %d!\n", playerName[playerTurn], amount);
+              printf("\n%s berhasil membuang skill Mesin Waktu %d!\n", playerName[playerTurn], amount);
               break;
           case (3) :
-              printf("%s berhasil membuang skill Baling Baling Jambu %d!\n", playerName[playerTurn], amount);
+              printf("\n%s berhasil membuang skill Baling Baling Jambu %d!\n", playerName[playerTurn], amount);
               break;
           case (4) :
-              printf("%s berhasil membuang skill Cermin Pengganda!\n", playerName[playerTurn]);
+              printf("\n%s berhasil membuang skill Cermin Pengganda!\n", playerName[playerTurn]);
               break;
           case (5) :
-              printf("%s berhasil membuang skill Senter Pembesar Hoki!\n", playerName[playerTurn]);
+              printf("\n%s berhasil membuang skill Senter Pembesar Hoki!\n", playerName[playerTurn]);
               break;
           case (6) :
-              printf("%s berhasil membuang skill Senter Pengecil Hoki!\n", playerName[playerTurn]);
+              printf("\n%s berhasil membuang skill Senter Pengecil Hoki!\n", playerName[playerTurn]);
               break;
           case (7) :
-              printf("%s berhasil membuang skill Mesin Penukar Posisi!\n", playerName[playerTurn]);
+              printf("\n%s berhasil membuang skill Mesin Penukar Posisi!\n", playerName[playerTurn]);
               break;
           }
           inputCommand();
       }
   }
   else if (no_pilihan > NBElmtList(skill_list[playerTurn])) {
-      printf("Tidak ada skill dengan nomor tersebut. Harap masukkan nomor yang terdapat pada skill list.\n\n");
+      printf("\nTidak ada skill dengan nomor tersebut. Harap masukkan nomor yang terdapat pada skill list.\n\n");
       skill_menu(playerTurn);
   }
   else {
@@ -202,19 +205,64 @@ void gacha_skill(int playerTurn) {
     }
 }
 
-void pintuGaKeMana2() {
-
+void pintuGaKeMana2(int playerTurn) {
+    //kurang nyalain buff di sini
+    printf("\n%s memakai skill Pintu Ga Ke Mana Mana.\n", playerName[playerTurn]);
+    printf("%s mendapatkan buff imunitas teleport!\n", playerName[playerTurn]);
 }
 
-void mesinWaktu(int langkah) {
-
+void mesinWaktu(int playerTurn, int langkah) {
+    printf("\n%s memakai skill Mesin Waktu %d.\n", playerName[playerTurn], langkah);
+    int loop = 1;
+    while (loop == 1) {
+        printf("Pilih pemain yang ingin dimundurkan :\n");
+        for(int i = 0; i < nbPlayer; i++) {
+            if (i != playerTurn) {
+                printf("%d. %s\n", i+1, playerName[i]);
+            } 
+        }
+        printf("Tekan 0 untuk kembali ke menu skill.");
+        printf("\nMasukkan pemain (angka) : ");
+        scanf("%d", &target_player);
+        if ((target_player > nbPlayer) || (target_player < 0)) {
+            printf("Masukan tidak valid. Mohon masukkan nomor pemain yang valid.\n\n");
+        } else if (target_player == 0) {
+            loop = 0;
+            skill_menu(playerTurn);
+        } else {
+            target_player = target_player - 1;
+            //ditambah nanti buat skill lanjutan
+        }
+    }
 }
 
-void baling2Jambu(int langkah) {
-
+void baling2Jambu(int playerTurn, int langkah) {
+    printf("\n%s memakai skill Baling Baling Jambu %d.\n", playerName[playerTurn], langkah);
+    int loop = 1;
+    while (loop == 1) {
+        printf("Pilih pemain yang ingin dimajukan :\n");
+        for(int i = 0; i < nbPlayer; i++) {
+            if (i != playerTurn) {
+                printf("%d. %s\n", i+1, playerName[i]);
+            } 
+        }
+        printf("Tekan 0 untuk kembali ke menu skill.");
+        printf("\nMasukkan pemain (angka) : ");
+        scanf("%d", &target_player);
+        if ((target_player > nbPlayer) || (target_player < 0)) {
+            printf("Masukan tidak valid. Mohon masukkan nomor pemain yang valid.\n\n");
+        } else if (target_player == 0) {
+            loop = 0;
+            skill_menu(playerTurn);
+        } else {
+            target_player = target_player - 1;
+            //ditambah nanti buat skill lanjutan
+        }
+    }
 }
 
 void cerminGanda(int playerTurn) {
+    printf("\n");
     gacha_skill(playerTurn);
     time_t start, end;
     time(&start);
@@ -223,12 +271,16 @@ void cerminGanda(int playerTurn) {
     //insert boolean cerminGanda = 1 agar tidak bisa dipakai lg di turn ini (mungkin masuk di buff)
 }
 
-void senterPembesarHoki() {
-
+void senterPembesarHoki(int playerTurn) {
+    //kurang nyalain buff di sini
+    printf("\n%s memakai skill Senter Pembesar Hoki.\n", playerName[playerTurn]);
+    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", 5 /*HalfMaxRoll*/, 10 /*MaxRoll*/);
 }
 
-void senterPengecilHoki() {
-
+void senterPengecilHoki(int playerTurn) {
+    //kurang nyalain buff di sini
+    printf("\n%s memakai skill Senter Pengecil Hoki.\n", playerName[playerTurn]);
+    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", 1 /*HalfMaxRoll*/, 5 /*MaxRoll*/);
 }
 
 void mesinPenukarPosisi(int playerTurn) {
@@ -245,8 +297,8 @@ void mesinPenukarPosisi(int playerTurn) {
     scanf("%d", &switch_place);
     switch_place = switch_place - 1;
     while ((switch_place >= nbPlayer) || (switch_place < 0) || (switch_place == playerTurn)) {
-        printf("Masukkan tidak valid. Mohon masukkan angka pemain yang valid.\n");
-        printf("Masukkan pemain (angka) : ");
+        printf("Masukan tidak valid. Mohon masukkan angka pemain yang valid.\n");
+        printf("Masukan pemain (angka) : ");
         scanf("%d", &switch_place);
     }
     int loc_temp_1 = playerLocation[playerTurn];

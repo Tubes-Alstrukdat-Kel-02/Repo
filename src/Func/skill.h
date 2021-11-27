@@ -5,7 +5,7 @@
 #include "../ADT/listdp_skill.h"
 
 List skill_list[5];
-int no_pilihan, switch_place;
+int no_pilihan, switch_place, target_player;
 
 void skill_menu (int playerTurn);
 // untuk menampilkan menu skill pada saat turn player
@@ -26,22 +26,22 @@ void show_skill_list(int playerTurn);
 void gacha_skill(int playerTurn);
 // untuk menggacha skill
 
-void pintuGaKeMana2();
+void pintuGaKeMana2(int playerTurn);
 // untuk skill Pintu ga ke mana mana
 
-void mesinWaktu(int langkah);
+void mesinWaktu(int playerTurn, int langkah);
 // untuk skill Mesin waktu
 
-void baling2Jambu(int langkah);
+void baling2Jambu(int playerTurn, int langkah);
 // untuk skill Baling baling jambu
 
 void cerminGanda(int playerTurn);
 // untuk skill Cermin pengganda
 
-void senterPembesarHoki();
+void senterPembesarHoki(int playerTurn);
 // untuk skill Senter pembesar hoki
 
-void senterPengecilHoki();
+void senterPengecilHoki(int playerTurn);
 // untuk skill Senter pengecil hoki
 
 void mesinPenukarPosisi(int playerTurn);
