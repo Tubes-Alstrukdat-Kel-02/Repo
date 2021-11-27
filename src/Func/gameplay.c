@@ -52,6 +52,7 @@ void MainMenu()
     else if (commandMain == 2)
   {
           // Function Load belum dibuat
+    loadFile();
     cekCommand = true;
   }
   else if (commandMain == 3)

@@ -3,10 +3,12 @@
 
 #include "../ADT/mesin_kata.h"
 #include "../ADT/mesin_kar.h"
+#include "../ADT/queueRenamed.h"
 #include "map.h"
 #include "skill.h"
 
 extern TabInt Layout_Map, Teleporter;
+extern Queue playerQueue;
 extern int lengthMap;
 extern int MaxRoll;
 extern int TotalTeleport;

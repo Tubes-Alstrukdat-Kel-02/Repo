@@ -4,6 +4,7 @@
 static FILE * pita;
 
 TabInt Layout_Map, Teleporter;
+Queue playerQueue;
 int lengthMap;
 int MaxRoll;
 int HalfMaxRoll;
@@ -162,6 +163,8 @@ void loadFile() //belum kelar
 {
     CreateMap(&Layout_Map);
     CreateMap(&Teleporter);
+    CreateEmptyQueue(&playerQueue, 5);
+    CreateEmpty(&skill_list[5]);
 
     char name[50];
     char filename[100];
@@ -219,5 +222,60 @@ void loadFile() //belum kelar
     }
 
     // lanjutin ngeload savenya
+    STARTKATA(fp);
+    nbPlayer = StrToInt(CKata);
+
+    STARTKATA(fp);
+    Round = StrToInt(CKata);
+
+    STARTKATA(fp);
+    playerTurn = StrToInt(CKata);
+
+    int k;
+    for(k = 0; k < nbPlayer; k++) 
+    {   
+        int NBElmtList_skill[5];
+
+        STARTKATA(fp);
+        playerName[k][30] = CKata.TabKata[k];
+
+        ADVKATA();
+        playerLocation[k] = StrToInt(CKata);
+
+        ADVKATA();
+        NBElmtList_skill[k] = StrToInt(CKata);
+
+        if (IsEmptyQueue(playerQueue))
+        {
+            int l;
+            for (l = 0; l < nbPlayer; l++)
+            {
+                playerLocation[l] = playerLocation[k];
+                AddElmtQueue(&playerQueue, l);
+            }
+            
+        }
+
+        if (NBElmtList_skill[k] != 0)
+        {
+            int m;
+            for (m = 0; m < NBElmtList_skill[k]; m++) 
+            {
+                addressList p = First(skill_list[m]);
+
+                STARTKATA();
+                Skill_id(p) = StrToInt(CKata);
+
+                ADVKATA();
+                Amount(p) = StrToInt(CKata);
+
+                if (IsEmptyList(skill_list[m])) 
+                {
+                    InsVLast (&skill_list[m], Skill_id(p), Amount(p));
+                }
+
+            }
+        }
+    }
     fclose(fp);
 }
