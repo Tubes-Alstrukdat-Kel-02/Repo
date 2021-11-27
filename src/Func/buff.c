@@ -6,47 +6,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "buff.h"
+#include "skill.h"
+#include "array.h"
+#include "listdp_skill.h"
+#include "boolean.h"
+#include <stdio.h>
+#include <stdlib.h>
+
 /* Case 3 commandSwitchCase */
-int show_buff_list(int PlayerTurn){
-    if (IsEmpty(skill_list)){
-        printf("Anda tidak memiliki buff!");
-    }
-    addressList p = First(skill_list[playerTurn]);
-    int x = 1;
-    printf("Anda memiliki buff =\n");
-    while (p != Nil){
-        if (Skill_id(p) == 1){
+int showBuffList(int playerTurn, int buffStat){
+    if (buffStat[playerTurn] != 0 && buffStat[playerTurn] != 1 && buffStat[playerTurn] != 2 && buffStat[playerTurn] != 3){
+        printf("Anda tidak memiliki buff.");
+    } else {
+        int x = 1;
+        printf("Anda memiliki buff =\n");
+        if (buffStat[playerTurn] != 0){
             printf("%d. Imunitas Teleport\n", x);
-        }else if (Skill_id(p) == 2){
+        }else if (buffStat[playerTurn] != 1){
             printf("%d. Cermin Pengganda\n", x);
-        }else if (Skill_id(p) == 3){
+        }else if (buffStat[playerTurn] != 2){
             printf("%d. Senter Pembesar Hoki\n", x);
-        }else if (Skill_id(p) == 4){
+        }else if (buffStat[playerTurn] != 3){
             printf("%d. Senter Pengecil Hoki\n", x);
+        }
     }
-    p = Next(p);
     x++;
 }
 
-/* Efek pemakaian skill */
+// typedef struct {
+//     int buffStat[3];
+// } Buff;
 
-void BuffStatus(playerTurn){
-    for (int i = 1; i <= n; i++){
-        IsImmune(playerTurn)[i] = false;
-        IsCerminPeng(playerTurn)[i] = false;
+/* Using skill effects */ 
+void buffPlayer(&playerTurn){
+    if (buffStat[playerTurn] != 0){
+        BuffImune[playerTurn] = false;
+    } else if (buffStat[playerTurn] != 1){
+        BuffCermin[playerTurn] = false;
+    } else if (buffStat[playerTurn] != 2){
+        BuffPembesar[playerTurn] = false;
+    } else if (buffStat[playerTurn] != 3){
+        BuffPengecil[playerTurn] = false;
     }
 }
 
-boolean IsImmunedTeleport (int playerTurn){
+boolean isImunitasTeleport(int playerTurn){
     if (playerTurn != IdxUndef){
-        return (IsImmune(playerTurn));
+        return (BuffImmune[playerTurn]);
     }
     return 0;
 }
 
-boolean IsCerminPengganda (int playerTurn){
+boolean isCerminPengganda(int playerTurn){
     if (playerTurn != IdxUndef){
-        return (IsCerminPeng(playerTurn));
+        return (BuffCermin[playerTurn]);
+    }
+    return 0;
+}
+
+boolean isSenterPembesar(int playerTurn){
+    if (playerTurn != IdxUndef){
+        return (BuffPembesar[playerTurn]);
+    }
+    return 0;
+}
+
+boolean isSenterPengecil(int playerTurn){
+    if (playerTurn != IdxUndef){
+        return (BuffPengecil[playerTurn]);
     }
     return 0;
 }
