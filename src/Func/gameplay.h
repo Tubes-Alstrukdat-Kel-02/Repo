@@ -15,6 +15,7 @@ extern int lengthMap;
 extern TabInt Layout_Map, Teleporter;
 extern int MaxRoll;
 extern int TotalTeleport;
+extern int Round;
 
 void welcomeGame();
 /* Pembuka game */

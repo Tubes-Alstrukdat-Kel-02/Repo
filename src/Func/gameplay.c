@@ -96,14 +96,17 @@ void initializePlayerQueue() {
 }
 
 void roundLoop() {
-  int round = 0;
+  if (commandMain ==1)
+  {
+    Round = 0;
+  }
 
   do {
     if (playerTurn == 0) {
-      round = round + 1;
+      Round = Round + 1;
       // SILAHKAN RESET BUFF DISINI
 
-      printf("\n<><><><><><><>!!!    RONDE %d    !!!<><><><><><><>\n", round);
+      printf("\n<><><><><><><>!!!    RONDE %d    !!!<><><><><><><>\n", Round);
     }
     printf("\n");
     MAP();

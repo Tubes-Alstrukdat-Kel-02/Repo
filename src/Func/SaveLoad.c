@@ -9,6 +9,8 @@ int MaxRoll;
 int HalfMaxRoll;
 int TotalTeleport;
 List skill_list[5];
+int Round;
+int playerTurn;
 
 void readFile()
 {
@@ -127,8 +129,14 @@ void saveFile()
 
     // Baris ke-6 jumlah pemain
     fprintf(fp, "%d\n", nbPlayer);
+
+    // Baris ke-7 round saat disave
+    fprintf(fp, "%d\n", Round);
+
+    // Baris ke-8 player yang akan bermain
+    fprintf(fp, "%d\n", playerTurn);
     
-    // Baris ke-7 sampai selesai data pemain
+    // Baris ke-9 sampai selesai data pemain
     int k; 
     for(k = 0; k < nbPlayer; k++)
     {   

@@ -11,6 +11,8 @@ extern int lengthMap;
 extern int MaxRoll;
 extern int TotalTeleport;
 extern List skill_list[5];
+extern int Round;
+extern int playerTurn;
 
 void readFile();
 void saveFile();
