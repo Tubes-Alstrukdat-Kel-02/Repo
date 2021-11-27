@@ -5,7 +5,7 @@
 #include "../ADT/listdp_skill.h"
 
 List skill_list[5];
-int no_pilihan;
+int no_pilihan, switch_place;
 
 void skill_menu (int playerTurn);
 // untuk menampilkan menu skill pada saat turn player
@@ -44,7 +44,7 @@ void senterPembesarHoki();
 void senterPengecilHoki();
 // untuk skill Senter pengecil hoki
 
-void mesinPenukarPosisi();
+void mesinPenukarPosisi(int playerTurn);
 // untuk skill Mesin penukar posisi
 
 /* 

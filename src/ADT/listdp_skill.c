@@ -44,13 +44,13 @@ void Dealokasi (addressList P) {
 }
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-addressList Search (List L, infotype X) {
+addressList Search (List L, infotype X, infotype Y) {
 /* Mencari apakah ada elemen list dengan Skill_id(P)=X */
 /* Jika ada, mengirimkan addressList elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
     addressList p = First(L);
     if (!IsEmptyList(L)) {
-        while (((p) != Nil) && (Skill_id(p) != X)) {
+        while (((p) != Nil) && (Skill_id(p) != X) && (Amount(p) != Y)) {
             p = Next(p);
         }
     }
@@ -188,14 +188,14 @@ void DelLast (List *L, addressList *P) {
     }
 }
 
-void DelP (List *L, infotype X) {
+void DelP (List *L, infotype X, infotype Y) {
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddressList P, dengan Skill_id(P)=X*/
 /* maka P dihapus dari list dan didealokasi */
 /* Jika tidak ada elemen list dengan Skill_id(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
     addressList p;
-    p = Search(*L, X);
+    p = Search(*L, X, Y);
     if (p != Nil) {
         if (Prev(p) != Nil)
             DelAfter(L, &p, Prev(p));

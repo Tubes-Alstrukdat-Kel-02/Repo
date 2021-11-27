@@ -59,7 +59,7 @@ void Dealokasi (addressList P);
 /* Melakukan dealokasi/pengembalian addressList P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-addressList Search (List L, infotype X);
+addressList Search (List L, infotype X, infotype Y);
 /* Mencari apakah ada elemen list dengan Skill_id(P)=X */
 /* Jika ada, mengirimkan addressList elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
@@ -114,7 +114,7 @@ void DelLast (List *L, addressList *P);
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen pertama yg lama, jika ada */
 
-void DelP (List *L, infotype X);
+void DelP (List *L, infotype X, infotype Y);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddressList P, dengan Skill_id(P)=X*/
 /* maka P dihapus dari list dan didealokasi */
