@@ -12,8 +12,8 @@ extern int MaxRoll;
 extern int TotalTeleport;
 extern List skill_list[5];
 
-void ReadFile();
-void SaveFile();
-void LoadFile();
+void readFile();
+void saveFile();
+void loadFile();
 
 #endif

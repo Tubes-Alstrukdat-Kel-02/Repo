@@ -10,7 +10,7 @@ int HalfMaxRoll;
 int TotalTeleport;
 List skill_list[5];
 
-void ReadFile()
+void readFile()
 {
     CreateMap(&Layout_Map);
     CreateMap(&Teleporter);
@@ -74,7 +74,7 @@ void ReadFile()
     fclose(fp);
 }
 
-void SaveFile()
+void saveFile()
 {
     char name[50];
     FILE *fp;
@@ -150,7 +150,7 @@ void SaveFile()
     fclose(fp);
 }
 
-void LoadFile() //belum kelar
+void loadFile() //belum kelar
 {
     CreateMap(&Layout_Map);
     CreateMap(&Teleporter);
