@@ -43,4 +43,7 @@ void commandSwitchCase();
 void playerWin(); // done
 /* Pemain telah memenangkan permainan */
 
+void rankPlayer();
+/* Menampilkan ranking pemain */
+
 #endif

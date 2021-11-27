@@ -5,24 +5,25 @@
 #include "skill.h"
 #include "SaveLoad.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int lengthMap;
 
 void welcomeGame()
 {
   printf("\n");
-  printf("________________________ TUGAS BESAR IF2111 ALGORITMA DAN STRUKTUR DATA KELOMPOK 2 ________________________\n");
-  printf("|                                                                                                         |\n");
-  printf("|   xxx   xxx    xxxxxx   xxxxxxx   xxxxxx  xxxxxxxx     xxx     xx    xx   xxxxxxx   xxxxxxx     xxx     |\n"); 
-  printf("|  xxxxx xxxxx  xx    xx  xx    xx    xx       xx       xx xx    xxx   xx  xx    xx  xx    xx    xx xx    |\n"); 
-  printf("|  xx xxxxx xx  xx    xx  xx    xx    xx       xx      xx   xx   xxxxx xx  xx        xx         xx   xx   |\n");
-  printf("|  xx  xxx  xx  xx    xx  xxxxxxx     xx       xx     xxxxxxxxx  xx xx xx  xx        xx        xxxxxxxxx  |\n"); 
-  printf("|  xx       xx  xx    xx  xx    xx    xx       xx     xx     xx  xx  xxxx  xx   xxx  xx   xxx  xx     xx  |\n"); 
-  printf("|  xx       xx  xx    xx  xx    xx    xx       xx     xx     xx  xx   xxx  xx    xx  xx    xx  xx     xx  |\n"); 
-  printf("|  xx       xx   xxxxxx   xxxxxxx   xxxxxx     xx     xx     xx  xx    xx   xxxxxxx   xxxxxxx  xx     xx  |\n");
-  printf("|_________________________________________________________________________________________________________|\n");
+  printf("____________________________ TUGAS BESAR IF2111 ALGORITMA DAN STRUKTUR DATA KELOMPOK 2 _____________________________\n");
+  printf("|                                                                                                                  |\n");
+  printf("|   xxx   xxx     xxxxxx    xxxxxxx    xxxxxx   xxxxxxxx      xxx      xx    xx    xxxxxxx    xxxxxxx      xxx     |\n"); 
+  printf("|  xxxxx xxxxx   xx    xx   xx    xx     xx        xx        xx xx     xxx   xx   xx    xx   xx    xx     xx xx    |\n"); 
+  printf("|  xx xxxxx xx   xx    xx   xx    xx     xx        xx       xx   xx    xxxxx xx   xx         xx          xx   xx   |\n");
+  printf("|  xx  xxx  xx   xx    xx   xxxxxxx      xx        xx      xxxxxxxxx   xx xx xx   xx         xx         xxxxxxxxx  |\n"); 
+  printf("|  xx       xx   xx    xx   xx    xx     xx        xx      xx     xx   xx  xxxx   xx   xxx   xx   xxx   xx     xx  |\n"); 
+  printf("|  xx       xx   xx    xx   xx    xx     xx        xx      xx     xx   xx   xxx   xx    xx   xx    xx   xx     xx  |\n"); 
+  printf("|  xx       xx    xxxxxx    xxxxxxx    xxxxxx      xx      xx     xx   xx    xx    xxxxxxx    xxxxxxx   xx     xx  |\n");
+  printf("|__________________________________________________________________________________________________________________|\n");
   printf("\n");
-  printf("                          #####!!! SELAMAT DATANG DI PERMAINAN MOBITANGGA !!!#####                         \n");
+  printf("                               #####!!! SELAMAT DATANG DI PERMAINAN MOBITANGGA !!!#####                             \n");
   printf("\n");
 }
 
@@ -42,6 +43,7 @@ void MainMenu()
   if (commandMain == 1)
   {
     initializePlayerQueue();
+    printf("\n");
     ReadFile();
     cekCommand = true;
   }
@@ -52,8 +54,11 @@ void MainMenu()
   }
   else if (commandMain == 3)
   {
-        // Function exit belum dibuat
     cekCommand = true;
+    printf("Terima kasih telah memainkan permainan MOBITANGGA\n");
+    printf("Bye bye........\n");
+
+    exit(0);
   }
 
   while (cekCommand == false)
@@ -93,7 +98,7 @@ void roundLoop() {
       round = round + 1;
       // SILAHKAN RESET BUFF DISINI
 
-      printf("\n#####!!! RONDE %d !!!######\n", round);
+      printf("\n<><><><><><><>!!!    RONDE %d    !!!<><><><><><><>\n", round);
     }
     printf("\n");
     MAP();
@@ -106,11 +111,12 @@ void turnLoop() {
     hasMoved = false;
     turnEnded = false;
 
-    printf("\n#####!!! Sekarang giliran %s !!!#####\n\n", playerName[playerTurn]);
+    printf("\n---###!!!   Sekarang giliran %s   !!!###---\n\n", playerName[playerTurn]);
     check_jumlah_skill(playerTurn);
     do {
       inputCommand();
     } while (turnEnded == false);
+
     AddElmtQueue(&playerQueue, InfoHeadQueue(playerQueue));
     DelElmtQueue(&playerQueue, &InfoHeadQueue(playerQueue));
 
@@ -134,10 +140,12 @@ void inputCommand() {
 void commandSwitchCase() {
   printf("\nMasukkan command: ");
   scanf("%d", &command);
+  printf("\n");
   while (command < 1 || command > 8) {
     printf("Input tidak valid, harap masukkan bilangan 1-8.\n");
     printf("\nMasukkan command: ");
     scanf("%d", &command);
+    printf("\n");
   }
   switch (command){
     case 1:
@@ -188,4 +196,35 @@ void commandSwitchCase() {
 
 void playerWin() {
   printf("\n!!! Selamat, %s telah memenangkan permainan. !!!\n", playerName[playerTurn]);
+}
+
+void rankPlayer()
+{
+  int loc1 = playerLocation[0];
+  int loc2 = playerLocation[1];
+  int loc3 = playerLocation[2];
+  int loc4 = playerLocation[3];
+  int i,temp, j,k;
+  int loc[5] = {loc1, loc2, loc3, loc4};
+  int rank[5] = {0,1,2,3};
+
+  for (i = 0; i < nbPlayer; ++i) 
+  {
+    for (j = i + 1; j < nbPlayer; ++j) 
+      {
+        if (loc[i] <= loc[j]) 
+            {
+              temp = rank[i];
+              rank[i] = rank[j];
+              rank[j] = temp;
+            }
+      }
+  }
+
+  printf("\n$$$$$$$   LEADERBOARD   $$$$$$$\n\n");
+  for(i = 0; i < nbPlayer; i++)
+  {
+    printf("Rank %d %s dengan petak akhir %d\n", i+1, playerName[rank[i]], playerLocation[rank[i]]);
+  }
+  printf("\n");
 }
