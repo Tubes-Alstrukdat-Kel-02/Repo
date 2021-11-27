@@ -168,11 +168,12 @@ void loadFile() //belum kelar
 
     char name[50];
     char filename[100];
-    printf("Masukan nama file konfigurasi : ");
+    printf("Masukan nama save file yang akan di load : ");
     scanf("%s", name);
 
     strcat(filename, "../../data/");
     strcat(filename, name);
+    strcat(filename, ".txt");
 
     FILE *fp;
     fp = fopen(filename, "r");
@@ -196,6 +197,7 @@ void loadFile() //belum kelar
         }
         Layout_Map.Neff = Layout_Map.Neff+1;
     } 
+    strset(CKata.TabKata, '\0');
 
     STARTKATA(fp);
     MaxRoll = StrToInt(CKata);
@@ -221,7 +223,6 @@ void loadFile() //belum kelar
         }
     }
 
-    // lanjutin ngeload savenya
     STARTKATA(fp);
     nbPlayer = StrToInt(CKata);
 
@@ -234,47 +235,35 @@ void loadFile() //belum kelar
     int k;
     for(k = 0; k < nbPlayer; k++) 
     {   
-        int NBElmtList_skill[5];
+        int nbElmtSkill;
 
         STARTKATA(fp);
-        playerName[k][30] = CKata.TabKata[k];
+
+        strcpy(playerName[k], CKata.TabKata);
+        strset(CKata.TabKata, '\0');
 
         ADVKATA();
         playerLocation[k] = StrToInt(CKata);
 
         ADVKATA();
-        NBElmtList_skill[k] = StrToInt(CKata);
+        nbElmtSkill = StrToInt(CKata);
 
-        if (IsEmptyQueue(playerQueue))
+        AddElmtQueue(&playerQueue, k);
+
+        int m;
+        for (m = 0; m < nbElmtSkill; m++) 
         {
-            int l;
-            for (l = 0; l < nbPlayer; l++)
-            {
-                playerLocation[l] = playerLocation[k];
-                AddElmtQueue(&playerQueue, l);
-            }
+            int Skill_id, Amount;
+
+            STARTKATA(fp);
+            Skill_id = StrToInt(CKata);
             
-        }
+            ADVKATA();
+            Amount = StrToInt(CKata);
 
-        if (NBElmtList_skill[k] != 0)
-        {
-            int m;
-            for (m = 0; m < NBElmtList_skill[k]; m++) 
-            {
-                addressList p = First(skill_list[m]);
+            addressList P = Alokasi (Skill_id, Amount);
 
-                STARTKATA();
-                Skill_id(p) = StrToInt(CKata);
-
-                ADVKATA();
-                Amount(p) = StrToInt(CKata);
-
-                if (IsEmptyList(skill_list[m])) 
-                {
-                    InsVLast (&skill_list[m], Skill_id(p), Amount(p));
-                }
-
-            }
+            InsertLast(&skill_list[m], P);
         }
     }
     fclose(fp);
