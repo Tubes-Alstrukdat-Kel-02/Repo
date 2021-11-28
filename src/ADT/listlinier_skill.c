@@ -223,7 +223,7 @@ void PrintInfo_List (List L) {
     addressList p = First(L);
     printf("[");
     while (p != Nil) {
-        printf("%d%d", Skill_id(p), Amount(p));
+        printf("%d-%d", Skill_id(p), Amount(p));
         if (Next(p) != Nil) {
             printf(",");
         }
