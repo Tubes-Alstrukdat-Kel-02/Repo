@@ -15,23 +15,33 @@
 #include <stdlib.h>
 
 /* Case 3 commandSwitchCase */
+int playerTurn;
+
+int isImunitasTeleport[3] = {0,0,0,0}
+int isCerminPengganda[3] = {0,0,0,0}
+int isSenterPembesar[3] = {0,0,0,0}
+int isSenterPengecil[3] = {0,0,0,0}
+
 int showBuffList(int playerTurn, int buffStat){
     if (buffStat[playerTurn] != 0 && buffStat[playerTurn] != 1 && buffStat[playerTurn] != 2 && buffStat[playerTurn] != 3){
         printf("Anda tidak memiliki buff.");
     } else {
-        int x = 1;
+        int x = 0;
         printf("Anda memiliki buff =\n");
-        if (buffStat[playerTurn] != 0){
+        if (buffStat[playerTurn] == 0){
+            x = x + 1;
             printf("%d. Imunitas Teleport\n", x);
-        }else if (buffStat[playerTurn] != 1){
+        }else if (buffStat[playerTurn] == 1){
+            x = x + 1;
             printf("%d. Cermin Pengganda\n", x);
-        }else if (buffStat[playerTurn] != 2){
+        }else if (buffStat[playerTurn] == 2){
+            x = x + 1;
             printf("%d. Senter Pembesar Hoki\n", x);
-        }else if (buffStat[playerTurn] != 3){
+        }else if (buffStat[playerTurn] == 3){
+            x = x + 1;
             printf("%d. Senter Pengecil Hoki\n", x);
         }
     }
-    x++;
 }
 
 // typedef struct {
@@ -40,13 +50,13 @@ int showBuffList(int playerTurn, int buffStat){
 
 /* Using skill effects */ 
 void buffPlayer(&playerTurn){
-    if (buffStat[playerTurn] != 0){
+    if (buffStat[playerTurn] == 0){
         BuffImune[playerTurn] = false;
-    } else if (buffStat[playerTurn] != 1){
+    } else if (buffStat[playerTurn] == 1){
         BuffCermin[playerTurn] = false;
-    } else if (buffStat[playerTurn] != 2){
+    } else if (buffStat[playerTurn] == 2){
         BuffPembesar[playerTurn] = false;
-    } else if (buffStat[playerTurn] != 3){
+    } else if (buffStat[playerTurn] == 3){
         BuffPengecil[playerTurn] = false;
     }
 }

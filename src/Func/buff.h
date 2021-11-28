@@ -4,6 +4,7 @@
 #define buff_H
 
 #include "../ADT/boolean.h"
+extern int playerTurn;
 
 List buffStat[3];
 
