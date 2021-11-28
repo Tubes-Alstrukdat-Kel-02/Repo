@@ -2,9 +2,11 @@
 #include "skill.h"
 #include "map.h"
 #include "roll.h"
+#include "buff.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <math.h>
 
 void skill_menu(int playerTurn) {
   printf("Kamu memiliki skill :\n");
@@ -19,8 +21,8 @@ void skill_menu(int playerTurn) {
   if ((no_pilihan > 0) && (no_pilihan <= NBElmtList(skill_list[playerTurn])) ) {
       addressList p = searchOrder(no_pilihan, playerTurn);
       switch (Skill_id(p)) {
-      case (1) : //Pintu ga ke mana mana
-          if (/*insert cek buff immune teleport*/playerTurn == playerTurn) {
+      case (1) :   //Pintu ga ke mana mana
+          if (BuffImmune[playerTurn] != 1) {
               pintuGaKeMana2(playerTurn);
               DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
@@ -29,14 +31,14 @@ void skill_menu(int playerTurn) {
               skill_menu(playerTurn);
               break;
           }
-      case (2) : //Mesin waktu
+      case (2) :   //Mesin waktu
           mesinWaktu(playerTurn, Amount(p), p);
           break;
-      case (3) : //Baling baling jambu
+      case (3) :   //Baling baling jambu
           baling2Jambu(playerTurn, Amount(p), p);
           break;
-      case (4) : //Cermin pengganda
-          if (NBElmtList(skill_list[playerTurn]) <= 9 /*nanti ditambah kriteria 1/turn*/) {
+      case (4) :   //Cermin pengganda
+          if ((NBElmtList(skill_list[playerTurn]) <= 9) && (BuffCermin[playerTurn] != 1)) {
               cerminGanda(playerTurn);
               DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
@@ -45,12 +47,12 @@ void skill_menu(int playerTurn) {
               skill_menu(playerTurn);
               break;
           }
-      case (5) : //Senter pembesar hoki
-          if (/*buff SBesarH aktif*/playerTurn == playerTurn) {
+      case (5) :   //Senter pembesar hoki
+          if (BuffPembesar[playerTurn] == 1) {
               printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Senter Pembesar Hoki.\n\n");
               skill_menu(playerTurn);
               break;
-          } else if (/*buff SKecilH aktif*/playerTurn == playerTurn) {
+          } else if (BuffPengecil[playerTurn] == 1) {
               printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Senter Pengecil Hoki.\n\n");
               skill_menu(playerTurn);
               break;
@@ -59,12 +61,12 @@ void skill_menu(int playerTurn) {
               DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           }
-      case (6) : //Senter pengecil hoki
-          if (/*buff SBesarH aktif*/playerTurn == playerTurn) {
+      case (6) :   //Senter pengecil hoki
+          if (BuffPembesar[playerTurn] == 1) {
               printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Senter Pembesar Hoki.\n\n");
               skill_menu(playerTurn);
               break;
-          } else if (/*buff SKecilH aktif*/playerTurn == playerTurn) {
+          } else if (BuffPengecil[playerTurn] == 1) {
               printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Senter Pengecil Hoki.\n\n");
               skill_menu(playerTurn);
               break;
@@ -73,7 +75,7 @@ void skill_menu(int playerTurn) {
               DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           }          
-      case (7) : //Mesin penukar posisi
+      case (7) :   //Mesin penukar posisi
           mesinPenukarPosisi(playerTurn);
           DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
           break;
@@ -178,36 +180,36 @@ void gacha_skill(int playerTurn) {
     int gacha_skill;
     srand(time(NULL));
     gacha_skill = (rand() % (100 + 1 - 1) + 1);
-    if (gacha_skill <= 10) { //Pintu ga ke mana mana 10%
+    if (gacha_skill <= 10) {   //Pintu ga ke mana mana 10%
         InsVLast_List(&skill_list[playerTurn], 1, 0);
         printf("Anda mendapatkan skill Pintu Ga Ke Mana Mana!\n");
-    } else if ((gacha_skill >= 11) && (gacha_skill <= 20)) { //Mesin waktu 10%
-        int jumlah_mundur = roll_skill_langkah(10 /*diganti jadi MaxRoll*/);
+    } else if ((gacha_skill >= 11) && (gacha_skill <= 20)) {   //Mesin waktu 10%
+        int jumlah_mundur = roll_skill_langkah(MaxRoll);
         InsVLast_List(&skill_list[playerTurn], 2, jumlah_mundur);
         printf("Anda mendapatkan skill Mesin Waktu %d!\n", jumlah_mundur);
-    } else if ((gacha_skill >= 21) && (gacha_skill <= 30)) { //Baling baling jambu 10%
-        int jumlah_maju = roll_skill_langkah(10 /*diganti jadi MaxRoll*/);
+    } else if ((gacha_skill >= 21) && (gacha_skill <= 30)) {   //Baling baling jambu 10%
+        int jumlah_maju = roll_skill_langkah(MaxRoll);
         InsVLast_List(&skill_list[playerTurn], 3, jumlah_maju);
         printf("Anda mendapatkan skill Baling Baling Jambu %d!\n", jumlah_maju);
-    } else if ((gacha_skill >= 31) && (gacha_skill <= 36)) { //Cermin pengganda 6%
+    } else if ((gacha_skill >= 31) && (gacha_skill <= 36)) {   //Cermin pengganda 6%
         InsVLast_List(&skill_list[playerTurn], 4, 0);
         printf("Anda mendapatkan skill Cermin Pengganda!\n");
-    } else if ((gacha_skill >= 37) && (gacha_skill <= 51)) { //Senter pembesar hoki 15%
+    } else if ((gacha_skill >= 37) && (gacha_skill <= 51)) {   //Senter pembesar hoki 15%
         InsVLast_List(&skill_list[playerTurn], 5, 0);
         printf("Anda mendapatkan skill Senter Pembesar Hoki!\n");
-    } else if ((gacha_skill >= 52) && (gacha_skill <= 66)) { //Senter pengecil hoki 15%
+    } else if ((gacha_skill >= 52) && (gacha_skill <= 66)) {   //Senter pengecil hoki 15%
         InsVLast_List(&skill_list[playerTurn], 6, 0);
         printf("Anda mendapatkan skill Senter Pengecil Hoki!\n");
-    } else if ((gacha_skill >= 67) && (gacha_skill <= 70)) { //Mesin penukar posisi 4%
+    } else if ((gacha_skill >= 67) && (gacha_skill <= 70)) {   //Mesin penukar posisi 4%
         InsVLast_List(&skill_list[playerTurn], 7, 0);
         printf("Anda mendapatkan skill Mesin Penukar Posisi!\n");
-    } else if ((gacha_skill >= 71) && (gacha_skill <= 100)) { //Teknologi Gagal 30%
+    } else if ((gacha_skill >= 71) && (gacha_skill <= 100)) {   //Teknologi Gagal 30%
         printf("Teknologi Gagal. Anda tidak mendapatkan skill.\n");
     }
 }
 
 void pintuGaKeMana2(int playerTurn) {
-    //kurang nyalain buff di sini
+    BuffImmune[playerTurn] = 1;
     printf("\n%s memakai skill Pintu Ga Ke Mana Mana.\n", playerName[playerTurn]);
     printf("%s mendapatkan buff imunitas teleport!\n", playerName[playerTurn]);
 }
@@ -246,11 +248,10 @@ void mesinWaktu(int playerTurn, int langkah, addressList p) {
                 printf("\n%s dimundurkan sebanyak %d langkah!\n", playerName[target_player], langkah);
                 printf("%s sekarang berada pada petak %d.\n", playerName[target_player], moveLocation);
                 int teleportLocation = GetElmt(Teleporter, moveLocation-1);
-                int imunitasTeleport = 1; //buang ini nanti kalo buff dah jadi
-                if ((teleportLocation != 0) && (imunitasTeleport == 0 /*buff imunitas cek di sini*/)) {
+                if ((teleportLocation != 0) && (BuffImmune[playerTurn] == 0)) {
                     printf("Ada teleporter pada petak %d! %s teleport ke petak %d", moveLocation, playerName[target_player], teleportLocation);
                     moveOtherPlayer(target_player, teleportLocation);
-                } else if ((teleportLocation != 0) && (imunitasTeleport == 1 /*buff imunitas cek di sini*/)) {
+                } else if ((teleportLocation != 0) && (BuffImmune[playerTurn] == 1)) {
                     printf("Ada teleporter pada petak %d! Anda memiliki buff Imunitas Teleport.\n", moveLocation);
                     int loop_check = 1;
                     while (loop_check == 1) {
@@ -321,11 +322,10 @@ void baling2Jambu(int playerTurn, int langkah, addressList p) {
                 printf("\n%s dimajukan sebanyak %d langkah!\n", playerName[target_player], langkah);
                 printf("%s sekarang berada pada petak %d.\n", playerName[target_player], moveLocation);
                 int teleportLocation = GetElmt(Teleporter, moveLocation-1);
-                int imunitasTeleport = 1; //buang ini nanti kalo buff dah jadi
-                if ((teleportLocation != 0) && (imunitasTeleport == 0 /*buff imunitas cek di sini*/)) {
+                if ((teleportLocation != 0) && (BuffImmune[playerTurn] == 0)) {
                     printf("Ada teleporter pada petak %d! %s teleport ke petak %d", moveLocation, playerName[target_player], teleportLocation);
                     moveOtherPlayer(target_player, teleportLocation);
-                } else if ((teleportLocation != 0) && (imunitasTeleport == 1 /*buff imunitas cek di sini*/)) {
+                } else if ((teleportLocation != 0) && (BuffImmune[playerTurn] == 1)) {
                     printf("Ada teleporter pada petak %d! Anda memiliki buff Imunitas Teleport.\n", moveLocation);
                     int loop_check = 1;
                     while (loop_check == 1) {
@@ -369,19 +369,19 @@ void cerminGanda(int playerTurn) {
     time(&start);
     do time(&end); while(difftime(end, start) <= 1);
     gacha_skill(playerTurn);
-    //insert boolean cerminGanda = 1 agar tidak bisa dipakai lg di turn ini (mungkin masuk di buff)
+    BuffCermin[playerTurn] = 1;
 }
 
 void senterPembesarHoki(int playerTurn) {
-    //kurang nyalain buff di sini
+    BuffPembesar[playerTurn] = 1;
     printf("\n%s memakai skill Senter Pembesar Hoki.\n", playerName[playerTurn]);
-    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", 5 /*HalfMaxRoll*/, 10 /*MaxRoll*/);
+    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", floor(MaxRoll/2), MaxRoll);
 }
 
 void senterPengecilHoki(int playerTurn) {
-    //kurang nyalain buff di sini
+    BuffPengecil[playerTurn] = 1;
     printf("\n%s memakai skill Senter Pengecil Hoki.\n", playerName[playerTurn]);
-    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", 1 /*HalfMaxRoll*/, 5 /*MaxRoll*/);
+    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", 1, floor(MaxRoll/2));
 }
 
 void mesinPenukarPosisi(int playerTurn) {

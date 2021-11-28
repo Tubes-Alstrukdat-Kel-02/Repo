@@ -7,14 +7,14 @@
 /* Case 3 commandSwitchCase */
 int playerTurn;
 
-BuffImmune[4] = {0,0,0,0};
-BuffCermin[4] = {0,0,0,0};
-BuffPembesar[4] = {0,0,0,0};
-BuffPengecil[4] = {0,0,0,0};
+// int BuffImmune[4] = {0,0,0,0};
+// int BuffCermin[4] = {0,0,0,0};
+// int BuffPembesar[4] = {0,0,0,0};
+// int BuffPengecil[4] = {0,0,0,0};
 
-void showBuffList(int playerTurn, int buffStat){
+void showBuffList(int playerTurn){
     if (BuffImmune[playerTurn] == 0 && BuffCermin[playerTurn] == 0 && BuffPembesar[playerTurn] == 0 && BuffPengecil[playerTurn] == 0){
-        printf("Anda tidak memiliki buff.");
+        printf("Anda tidak memiliki buff.\n");
     } else {
         int x = 0;
         printf("Anda memiliki buff =\n");

@@ -3,7 +3,7 @@
 #ifndef buff_H
 #define buff_H
 #include "../ADT/array.h"
-#include "../ADT/listdp_skill.h"
+#include "../ADT/listlinier_skill.h"
 #include "../ADT/boolean.h"
 extern int playerTurn;
 
@@ -12,7 +12,7 @@ int BuffCermin[4];
 int BuffPembesar[4];
 int BuffPengecil[4];
 
-void showBuffList(int playerTurn, int buffStat);
+void showBuffList(int playerTurn);
 /* Untuk menampilkan daftar buff yang dimiliki seorang player */
 
 void buffPlayer(int playerTurn);

@@ -104,10 +104,12 @@ void roundLoop() {
   do {
     if (playerTurn == 0) {
       Round = Round + 1;
-      int BuffCermin[4] = {0,0,0,0};
-      int BuffPembesar[4] = {0,0,0,0};
-      int BuffPengecil[4] = {0,0,0,0};
-
+      for (int i = 0; i < 4; i++) {
+        BuffCermin[i] = 0;
+        BuffPembesar[i] = 0;
+        BuffPengecil[i] = 0; 
+      }
+      
       printf("\n<><><><><><><>!!!    RONDE %d    !!!<><><><><><><>\n", Round);
     }
     printf("\n");
@@ -171,8 +173,8 @@ void commandSwitchCase() {
       commandSwitchCase();
       break;
     case 3:
-      printf("Fitur Buff belum dibuat.\n");
-      commandSwitchCase();
+      showBuffList(playerTurn);
+      inputCommand();
       break;
     case 4:
       inspect();
