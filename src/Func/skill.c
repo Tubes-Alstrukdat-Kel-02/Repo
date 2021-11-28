@@ -22,7 +22,7 @@ void skill_menu(int playerTurn) {
       case (1) : //Pintu ga ke mana mana
           if (/*insert cek buff immune teleport*/playerTurn == playerTurn) {
               pintuGaKeMana2(playerTurn);
-              DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+              DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           } else {
               printf("\nSkill tidak dapat digunakan. Anda sudah memiliki buff Imunitas Teleport.\n\n");
@@ -38,7 +38,7 @@ void skill_menu(int playerTurn) {
       case (4) : //Cermin pengganda
           if (NBElmtList(skill_list[playerTurn]) <= 9 /*nanti ditambah kriteria 1/turn*/) {
               cerminGanda(playerTurn);
-              DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+              DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           } else {
               printf("\nSkill tidak dapat digunakan. Hanya dapat digunakan saat jumlah skill < 10 dan hanya 1 per turn.\n\n");
@@ -56,7 +56,7 @@ void skill_menu(int playerTurn) {
               break;
           } else {
               senterPembesarHoki(playerTurn);
-              DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+              DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           }
       case (6) : //Senter pengecil hoki
@@ -70,12 +70,12 @@ void skill_menu(int playerTurn) {
               break;
           } else {
               senterPengecilHoki(playerTurn);
-              DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+              DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
               break;
           }          
       case (7) : //Mesin penukar posisi
           mesinPenukarPosisi(playerTurn);
-          DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+          DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
           break;
       inputCommand();
       }
@@ -89,7 +89,7 @@ void skill_menu(int playerTurn) {
           addressList p = searchOrder(no_pilihan, playerTurn);
           int id = Skill_id(p);
           int amount = Amount(p);
-          DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+          DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
           switch(id) {
           case (1) :
               printf("\n%s berhasil membuang skill Pintu Ga Ke Mana Mana!\n", playerName[playerTurn]);
@@ -179,27 +179,27 @@ void gacha_skill(int playerTurn) {
     srand(time(NULL));
     gacha_skill = (rand() % (100 + 1 - 1) + 1);
     if (gacha_skill <= 10) { //Pintu ga ke mana mana 10%
-        InsVLast(&skill_list[playerTurn], 1, 0);
+        InsVLast_List(&skill_list[playerTurn], 1, 0);
         printf("Anda mendapatkan skill Pintu Ga Ke Mana Mana!\n");
     } else if ((gacha_skill >= 11) && (gacha_skill <= 20)) { //Mesin waktu 10%
         int jumlah_mundur = roll_skill_langkah(10 /*diganti jadi MaxRoll*/);
-        InsVLast(&skill_list[playerTurn], 2, jumlah_mundur);
+        InsVLast_List(&skill_list[playerTurn], 2, jumlah_mundur);
         printf("Anda mendapatkan skill Mesin Waktu %d!\n", jumlah_mundur);
     } else if ((gacha_skill >= 21) && (gacha_skill <= 30)) { //Baling baling jambu 10%
         int jumlah_maju = roll_skill_langkah(10 /*diganti jadi MaxRoll*/);
-        InsVLast(&skill_list[playerTurn], 3, jumlah_maju);
+        InsVLast_List(&skill_list[playerTurn], 3, jumlah_maju);
         printf("Anda mendapatkan skill Baling Baling Jambu %d!\n", jumlah_maju);
     } else if ((gacha_skill >= 31) && (gacha_skill <= 36)) { //Cermin pengganda 6%
-        InsVLast(&skill_list[playerTurn], 4, 0);
+        InsVLast_List(&skill_list[playerTurn], 4, 0);
         printf("Anda mendapatkan skill Cermin Pengganda!\n");
     } else if ((gacha_skill >= 37) && (gacha_skill <= 51)) { //Senter pembesar hoki 15%
-        InsVLast(&skill_list[playerTurn], 5, 0);
+        InsVLast_List(&skill_list[playerTurn], 5, 0);
         printf("Anda mendapatkan skill Senter Pembesar Hoki!\n");
     } else if ((gacha_skill >= 52) && (gacha_skill <= 66)) { //Senter pengecil hoki 15%
-        InsVLast(&skill_list[playerTurn], 6, 0);
+        InsVLast_List(&skill_list[playerTurn], 6, 0);
         printf("Anda mendapatkan skill Senter Pengecil Hoki!\n");
     } else if ((gacha_skill >= 67) && (gacha_skill <= 70)) { //Mesin penukar posisi 4%
-        InsVLast(&skill_list[playerTurn], 7, 0);
+        InsVLast_List(&skill_list[playerTurn], 7, 0);
         printf("Anda mendapatkan skill Mesin Penukar Posisi!\n");
     } else if ((gacha_skill >= 71) && (gacha_skill <= 100)) { //Teknologi Gagal 30%
         printf("Teknologi Gagal. Anda tidak mendapatkan skill.\n");
@@ -276,7 +276,7 @@ void mesinWaktu(int playerTurn, int langkah, addressList p) {
                         moveOtherPlayer(target_player, teleportLocation);
                         break;
                     }
-                    DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+                    DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
                 } else {
                     printf("Tidak ada teleporter pada petak %d\n", moveLocation);
                 }
@@ -351,7 +351,7 @@ void baling2Jambu(int playerTurn, int langkah, addressList p) {
                         moveOtherPlayer(target_player, teleportLocation);
                         break;
                     }
-                    DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+                    DelP_List(&skill_list[playerTurn], Skill_id(p), Amount(p));
                 } else {
                     printf("Tidak ada teleporter pada petak %d\n", moveLocation);
                 }
