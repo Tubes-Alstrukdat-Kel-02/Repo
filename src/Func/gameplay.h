@@ -2,6 +2,7 @@
 #define gameplay_H
 
 #include "../ADT/boolean.h"
+#include "../ADT/stack.h"
 #include "../ADT/queueRenamed.h"
 #include "../ADT/array.h"
 
@@ -10,6 +11,7 @@ int playerLocation[5], playerTurn, playerTurnRn;
 int nbPlayer;
 char playerName[5][30];
 boolean turnEnded, hasMoved;
+Stack undoState;
 int commandMain;
 extern int lengthMap;
 extern TabInt Layout_Map, Teleporter;

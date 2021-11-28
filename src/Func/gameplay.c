@@ -103,6 +103,7 @@ void initializePlayerQueue() {
     scanf("%d", &nbPlayer);
   }
   CreateEmptyQueue(&playerQueue, nbPlayer+1);
+  CreateEmptyStack (&undoState);
   for (i = 0; i < nbPlayer; i++) {
     printf("Masukkan nama player %d: ", i+1);
     scanf("%s", playerName[i]);
@@ -151,6 +152,7 @@ void turnLoop() {
     } while (turnEnded == false);
 
     playerTurnRn = playerTurn;
+    PushStack(&undoState, playerTurn);
     AddElmtQueue(&playerQueue, InfoHeadQueue(playerQueue));
     DelElmtQueue(&playerQueue, &InfoHeadQueue(playerQueue));
 
@@ -237,8 +239,13 @@ void commandSwitchCase() {
         break;
       }
     case 8:
-      printf("Fitur Undo belum dibuat.\n");
-      commandSwitchCase();
+      printf("%s memilih Undo.\n", playerName[playerTurn]);
+      for (int i = 0; i < nbPlayer; i++){
+        PopStack(&undoState, &InfoTopStack(undoState));
+      }
+      for (int i = 0; i < nbPlayer; i++){
+        playerLocation[nbPlayer-1-i] = (undoState).T[((undoState).TOP)-i];
+      }
       break;
     case 9:
       printf("Terima kasih telah memainkan permainan MOBITANGGA\n");
