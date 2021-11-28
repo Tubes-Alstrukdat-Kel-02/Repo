@@ -8,7 +8,7 @@
 
 Queue playerQueue;
 Stack undoState;
-int playerLocation[5], playerTurn, playerTurnRn;
+int playerLocation[5], playerTurn;
 int nbPlayer;
 char playerName[5][30];
 boolean turnEnded, hasMoved;

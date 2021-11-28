@@ -8,13 +8,13 @@
 
 // GLOBAL
 Queue playerQueue;
-int playerLocation[5], playerTurn, playerTurnRn;
+int playerLocation[5], playerTurn;
 TabInt Layout_Map, Teleporter;
 int lengthMap;
 int MaxRoll;
 int TotalTeleport;
 int Round;
-Stack undoState;
+List skill_list[5];
 
 int main() {
   welcomeGame();

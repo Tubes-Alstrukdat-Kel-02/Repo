@@ -22,10 +22,13 @@ boolean IsFullStack (Stack S){
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
 void Push (Stack * S, infotype X){
-    if (IsEmptyStack(*S)){
+    if (!IsEmpty(*S))
+    {
+        Top(*S)++;
+    }
+    else
+    {
         Top(*S) = 1;
-    } else {
-        Top(*S) = Top(*S) + 1;
     }
     InfoTop(*S) = X;
 }

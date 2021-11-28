@@ -203,6 +203,7 @@ void commandSwitchCase() {
         break;
       }
     case 8:
+      printf("Fitur Undo belum dibuat.\n");
       undo(undoState); //Kembali ke state ronde sebelumnya
       break;
   }

@@ -30,20 +30,20 @@ typedef struct {
 /* Definisi akses dengan Selektor : Set dan Get */
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
-#define InfoTopElmt(S, E) (S).T[(S).TOP][E]
+#define InfoTopElmt(S)(E) (S).T[(S).TOP][E]
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmptyStack (Stack *S);
+void CreateEmpty (Stack *S);
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
 /* Ciri stack kosong : TOP bernilai Nil */
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmptyStack (Stack S);
+boolean IsEmpty (Stack S);
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
-boolean IsFullStack (Stack S);
+boolean IsFull (Stack S);
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
