@@ -2,16 +2,17 @@
 
 #ifndef buff_H
 #define buff_H
-
+#include "../ADT/array.h"
+#include "../ADT/listdp_skill.h"
 #include "../ADT/boolean.h"
 extern int playerTurn;
 
-List buffStat[3];
+List buffStat[4];
 
-int showBuffList(int playerTurn, int buffStat);
+void showBuffList(int playerTurn, int buffStat);
 /* Untuk menampilkan daftar buff yang dimiliki seorang player */
 
-void buffPlayer(&playerTurn);
+void buffPlayer(int playerTurn);
 /* Untuk set buff yang dimiliki seorang player */
 
 boolean isImunitasTeleport(int playerTurn);
