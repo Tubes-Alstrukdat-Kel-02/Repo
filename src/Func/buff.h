@@ -7,7 +7,10 @@
 #include "../ADT/boolean.h"
 extern int playerTurn;
 
-List buffStat[4];
+int BuffImmune[4];
+int BuffCermin[4];
+int BuffPembesar[4];
+int BuffPengecil[4];
 
 void showBuffList(int playerTurn, int buffStat);
 /* Untuk menampilkan daftar buff yang dimiliki seorang player */

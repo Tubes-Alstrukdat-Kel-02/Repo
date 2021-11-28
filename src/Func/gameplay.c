@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "buff.h"
 
 int lengthMap;
 TabInt wait;
@@ -104,7 +105,9 @@ void roundLoop() {
   do {
     if (playerTurn == 0) {
       Round = Round + 1;
-      // SILAHKAN RESET BUFF DISINI
+      int BuffCermin[4] = {0,0,0,0};
+      int BuffPembesar[4] = {0,0,0,0};
+      int BuffPengecil[4] = {0,0,0,0};
 
       printf("\n<><><><><><><>!!!    RONDE %d    !!!<><><><><><><>\n", Round);
     }

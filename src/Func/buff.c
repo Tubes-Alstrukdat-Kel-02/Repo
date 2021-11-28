@@ -2,31 +2,32 @@
 #include "skill.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "../ADT/boolean.h"
 
 /* Case 3 commandSwitchCase */
 int playerTurn;
 
-int BuffImmune[4] = {0,0,0,0};
-int BuffCermin[4] = {0,0,0,0};
-int BuffPembesar[4] = {0,0,0,0};
-int BuffPengecil[4] = {0,0,0,0};
+BuffImmune[4] = {0,0,0,0};
+BuffCermin[4] = {0,0,0,0};
+BuffPembesar[4] = {0,0,0,0};
+BuffPengecil[4] = {0,0,0,0};
 
 void showBuffList(int playerTurn, int buffStat){
-    if (BuffImmune[playerTurn] != 0 && BuffCermin[playerTurn] != 1 && BuffPembesar[playerTurn] != 2 && BuffPengecil[playerTurn] != 3){
+    if (BuffImmune[playerTurn] == 0 && BuffCermin[playerTurn] == 0 && BuffPembesar[playerTurn] == 0 && BuffPengecil[playerTurn] == 0){
         printf("Anda tidak memiliki buff.");
     } else {
         int x = 0;
         printf("Anda memiliki buff =\n");
-        if (BuffImmune[playerTurn] == 0){
+        if (BuffImmune[playerTurn] == 1){
             x = x + 1;
             printf("%d. Imunitas Teleport\n", x);
         }else if (BuffCermin[playerTurn] == 1){
             x = x + 1;
             printf("%d. Cermin Pengganda\n", x);
-        }else if (BuffPembesar[playerTurn] == 2){
+        }else if (BuffPembesar[playerTurn] == 1){
             x = x + 1;
             printf("%d. Senter Pembesar Hoki\n", x);
-        }else if (BuffPengecil[playerTurn] == 3){
+        }else if (BuffPengecil[playerTurn] == 1){
             x = x + 1;
             printf("%d. Senter Pengecil Hoki\n", x);
         }
