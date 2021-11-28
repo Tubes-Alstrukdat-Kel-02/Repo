@@ -6,7 +6,7 @@
 #include "../ADT/array.h"
 
 Queue playerQueue;
-int playerLocation[5], playerTurn;
+int playerLocation[5], playerTurn, playerTurnRn;
 int nbPlayer;
 char playerName[5][30];
 boolean turnEnded, hasMoved;
@@ -15,6 +15,7 @@ extern int lengthMap;
 extern TabInt Layout_Map, Teleporter;
 extern int MaxRoll;
 extern int TotalTeleport;
+extern int Round;
 
 void welcomeGame();
 /* Pembuka game */
@@ -45,5 +46,4 @@ void playerWin(); // done
 
 void rankPlayer();
 /* Menampilkan ranking pemain */
-
 #endif

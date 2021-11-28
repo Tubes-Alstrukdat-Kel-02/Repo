@@ -6,6 +6,7 @@
 #include "SaveLoad.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int lengthMap;
 
@@ -29,7 +30,7 @@ void welcomeGame()
 
 void MainMenu()
 {
-  printf("Main Menu:\n");
+  printf("=======   Main Menu   =======\n");
   printf("1. New Game\n");
   printf("2. Load Game\n");
   printf("3. Exit\n\n");
@@ -44,19 +45,22 @@ void MainMenu()
   {
     initializePlayerQueue();
     printf("\n");
-    ReadFile();
+    readFile();
     cekCommand = true;
   }
     else if (commandMain == 2)
   {
-          // Function Load belum dibuat
     cekCommand = true;
+    loadFile();
   }
   else if (commandMain == 3)
   {
-    cekCommand = true;
     printf("Terima kasih telah memainkan permainan MOBITANGGA\n");
     printf("Bye bye........\n");
+
+    time_t start, end;  
+    time(&start);
+    do time(&end); while(difftime(end, start) <= 1.5);
 
     exit(0);
   }
@@ -91,20 +95,23 @@ void initializePlayerQueue() {
 }
 
 void roundLoop() {
-  int round = 0;
+  if (commandMain ==1)
+  {
+    Round = 0;
+  }
 
   do {
     if (playerTurn == 0) {
-      round = round + 1;
+      Round = Round + 1;
       // SILAHKAN RESET BUFF DISINI
 
-      printf("\n<><><><><><><>!!!    RONDE %d    !!!<><><><><><><>\n", round);
+      printf("\n<><><><><><><>!!!    RONDE %d    !!!<><><><><><><>\n", Round);
     }
     printf("\n");
     MAP();
 
     turnLoop();
-  } while (playerLocation[playerTurn] != lengthMap);
+  } while (playerLocation[playerTurnRn] != lengthMap);
 }
 
 void turnLoop() {
@@ -115,8 +122,13 @@ void turnLoop() {
     check_jumlah_skill(playerTurn);
     do {
       inputCommand();
+      if (playerLocation[playerTurn] == lengthMap)
+      {
+          turnEnded = true;
+      }
     } while (turnEnded == false);
 
+    playerTurnRn = playerTurn;
     AddElmtQueue(&playerQueue, InfoHeadQueue(playerQueue));
     DelElmtQueue(&playerQueue, &InfoHeadQueue(playerQueue));
 
@@ -173,7 +185,7 @@ void commandSwitchCase() {
         break;
       }
     case 6:
-      SaveFile();
+      saveFile();
       commandSwitchCase();
       break;
     case 7:
@@ -195,7 +207,7 @@ void commandSwitchCase() {
 }
 
 void playerWin() {
-  printf("\n!!! Selamat, %s telah memenangkan permainan. !!!\n", playerName[playerTurn]);
+  printf("\n$$$$$ !!! Selamat, %s telah memenangkan permainan. !!! $$$$$\n", playerName[playerTurnRn]);
 }
 
 void rankPlayer()

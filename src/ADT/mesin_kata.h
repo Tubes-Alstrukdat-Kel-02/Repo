@@ -10,7 +10,7 @@
 #define BLANK ' '
 
 typedef struct {
-  char TabKata[50]; /* container penyimpan kata, indeks yang dipakai [1..NMax] */
+  char TabKata[100]; /* container penyimpan kata, indeks yang dipakai [1..NMax] */
     int Length;
 } Kata;
 

@@ -13,6 +13,7 @@ TabInt Layout_Map, Teleporter;
 int lengthMap;
 int MaxRoll;
 int TotalTeleport;
+int Round;
 List skill_list[5];
 
 int main() {
