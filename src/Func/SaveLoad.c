@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "SaveLoad.h"
 #include <string.h>
 static FILE * pita;
@@ -12,7 +13,9 @@ int TotalTeleport;
 List skill_list[5];
 int Round;
 int playerTurn;
-Queue playerQueue;
+int playerTurnTemp;
+Queue playerQueue, tempQueue;
+int BuffImmune[4], BuffCermin[4], BuffPembesar[4], BuffPengecil[4];
 
 void readFile()
 {
@@ -21,16 +24,16 @@ void readFile()
 
     char name[50];
     char filename[100];
-    printf("Masukan nama file konfigurasi : ");
+    printf("Masukan nama file konfigurasi (tanpa .txt) : ");
     scanf("%s", name);
 
-    strcat(filename, "../../data/");
+    strcat(filename, "../../data/config file/");
     strcat(filename, name);
     strcat(filename, ".txt");
 
     FILE *fp;
     fp = fopen(filename, "r");
-
+    
     STARTKATA(fp);
     lengthMap = StrToInt(CKata);
 
@@ -83,14 +86,14 @@ void saveFile()
 {
     char name[50];
     FILE *fp;
-    printf("Masukkan nama save file : ");
+    printf("Masukkan nama save file (tanpa .txt) : ");
     scanf("%s", name);
     pita = stdin;
     STARTKATA(pita);
 
-    printf("Data anda berhasil disimpan di ../data/%s.txt\n", name);
+    printf("Data anda berhasil disimpan di ../data/save file/%s.txt\n", name);
     char filename[100] = "";
-    strcat(filename, "data/");
+    strcat(filename, "data/save file/");
     strcat(filename, name);
     strcat(filename, ".txt");
 
@@ -156,6 +159,33 @@ void saveFile()
                 p = Next(p);
             }
         }
+
+        int tempImmune = 0;
+        int tempCermin = 0;
+        int tempPembesar = 0;
+        int tempPengecil = 0;
+        if (BuffImmune[k] == 1)
+        {
+            tempImmune = 1;
+        }
+
+        if (BuffCermin[k] == 1)
+        {
+            tempCermin = 1;
+        }
+        
+        if (BuffPembesar[k] == 1)
+        {
+            tempPembesar = 1;
+        }
+        
+        if(BuffPengecil[k] == 1)
+        {
+            tempPengecil = 1;
+        }
+
+        fprintf(fp,"%d %d %d %d\n", tempImmune, tempCermin, tempPembesar, tempPengecil);
+
     }
 
     fclose(fp);
@@ -170,13 +200,14 @@ void loadFile()
 
     char name[50];
     char filename[100];
-    printf("Masukan nama save file yang akan di load : ");
+    
+    printf("Masukan nama save file yang akan di load (tanpa .txt) : ");
     scanf("%s", name);
 
-    strcat(filename, "../../data/");
+    strcat(filename, "../../data/save file/");
     strcat(filename, name);
     strcat(filename, ".txt");
-
+    
     FILE *fp;
     fp = fopen(filename, "r");
 
@@ -232,7 +263,16 @@ void loadFile()
     Round = StrToInt(CKata);
 
     STARTKATA(fp);
-    playerTurn = StrToInt(CKata);
+    playerTurnTemp = StrToInt(CKata);
+
+    if (playerTurnTemp >= 0 && playerTurnTemp + 1 <= nbPlayer-1)
+    {
+        playerTurn = playerTurnTemp + 1;
+    }
+    else
+    {
+        playerTurn = playerTurnTemp - (nbPlayer - 1);
+    }
 
     int k;
     for(k = 0; k < nbPlayer; k++) 
@@ -267,8 +307,17 @@ void loadFile()
             InsertLast_List(&skill_list[m], P);
         }
 
-        //ADVKATA();
-        //activeBuff = ;
+        STARTKATA(fp);
+        BuffImmune[k] = StrToInt(CKata);
+
+        ADVKATA();
+        BuffCermin[k] = StrToInt(CKata);
+
+        ADVKATA();
+        BuffPembesar[k] = StrToInt(CKata);
+
+        ADVKATA();
+        BuffPengecil[k] = StrToInt(CKata);
     }
 
     fclose(fp);

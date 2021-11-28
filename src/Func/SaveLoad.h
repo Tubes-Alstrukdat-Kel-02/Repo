@@ -6,6 +6,7 @@
 #include "../ADT/queueRenamed.h"
 #include "../ADT/listlinier_skill.h"
 #include "../ADT/boolean.h"
+#include "buff.h"
 #include "map.h"
 #include "skill.h"
 

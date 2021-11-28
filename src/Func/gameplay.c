@@ -4,6 +4,7 @@
 #include "gameplay.h"
 #include "skill.h"
 #include "SaveLoad.h"
+#include "buff.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -41,31 +42,7 @@ void MainMenu()
 
   boolean cekCommand;
   cekCommand = false;
-
-  if (commandMain == 1)
-  {
-    initializePlayerQueue();
-    printf("\n");
-    readFile();
-    cekCommand = true;
-  }
-    else if (commandMain == 2)
-  {
-    cekCommand = true;
-    loadFile();
-  }
-  else if (commandMain == 3)
-  {
-    printf("Terima kasih telah memainkan permainan MOBITANGGA\n");
-    printf("Bye bye........\n");
-
-    time_t start, end;  
-    time(&start);
-    do time(&end); while(difftime(end, start) <= 1.5);
-
-    exit(0);
-  }
-
+  
   while (cekCommand == false)
   {
     if (commandMain < 1 | commandMain > 3)
@@ -73,6 +50,45 @@ void MainMenu()
       printf("Masukkan command : ");
       scanf("%d", &commandMain);
       printf("\n");
+    }
+
+    if (commandMain == 1)
+    {
+      initializePlayerQueue();
+      printf("\n");
+
+      lengthMap = 0;
+      readFile();
+ 
+      while (lengthMap == -1431655760)
+      {
+        printf("File yang Anda masukan tidak sesuai.\n");
+        readFile();
+      }
+
+      cekCommand = true;
+    }
+    else if (commandMain == 2)
+    {
+      cekCommand = true;
+      lengthMap = 0;
+      loadFile();
+      while (lengthMap == -1431655760)
+      {
+        printf("File yang Anda masukan tidak sesuai.\n");
+        loadFile();
+      }
+    }
+    else if (commandMain == 3)
+    {
+      printf("Terima kasih telah memainkan permainan MOBITANGGA\n");
+      printf("Bye bye........\n");
+
+      time_t start, end;  
+      time(&start);
+      do time(&end); while(difftime(end, start) <= 1.5);
+
+      exit(0);
     }
   }
 }
@@ -125,6 +141,7 @@ void turnLoop() {
 
     printf("\n---###!!!   Sekarang giliran %s   !!!###---\n\n", playerName[playerTurn]);
     check_jumlah_skill(playerTurn);
+    playerTurnRn = playerTurn;
     do {
       inputCommand();
       if (playerLocation[playerTurn] == lengthMap)
@@ -196,9 +213,17 @@ void commandSwitchCase() {
         break;
       }
     case 6:
-      saveFile();
-      commandSwitchCase();
-      break;
+      if (hasMoved)
+      {
+        saveFile();
+        break;
+      }
+      else
+      {
+        printf("Fitur save tersedia jika sudah melakukan roll.\n");
+        commandSwitchCase();
+        break;
+      }
     case 7:
       if (!hasMoved) {
         printf("%s belum melakukan Roll.\n", playerName[playerTurn]);

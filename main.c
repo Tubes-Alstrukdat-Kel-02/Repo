@@ -4,6 +4,7 @@
 #include "src/Func/skill.h"
 #include "src/Func/map.h"
 #include "src/Func/SaveLoad.h"
+#include "src/Func/buff.h"
 #include <stdio.h>
 
 // GLOBAL
@@ -22,8 +23,8 @@ int BuffPengecil[4];
 
 int main() {
   welcomeGame();
-  MainMenu();
-  while ( commandMain != 3) {
+  do {
+    MainMenu();
     for (int i = 0; i < 4; i++) {
       BuffImmune[i] = 0;
       BuffCermin[i] = 0;
@@ -33,7 +34,6 @@ int main() {
     roundLoop();
     playerWin();
     rankPlayer();
-    MainMenu();
-  }
+  } while ( commandMain != 3);
   return 0;
 }
