@@ -4,9 +4,11 @@
 #include "../ADT/boolean.h"
 #include "../ADT/queueRenamed.h"
 #include "../ADT/array.h"
+#include "../ADT/stack.h"
 
 Queue playerQueue;
-int playerLocation[5], playerTurn, playerTurnRn;
+Stack undoState;
+int playerLocation[5], playerTurn;
 int nbPlayer;
 char playerName[5][30];
 boolean turnEnded, hasMoved;
