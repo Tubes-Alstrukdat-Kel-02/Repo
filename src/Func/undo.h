@@ -2,7 +2,9 @@
 #define undo_H
 
 #include "../ADT/stack.h"
-#include <stdio.h>
+
+extern int playerLocation[5];
+extern Stack undoState;
 
 void insertPlayerLocation(Stack undoState, int nbPlayer, int playerLocation[5]);
 
