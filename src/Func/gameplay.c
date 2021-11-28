@@ -60,7 +60,7 @@ void MainMenu()
       lengthMap = 0;
       readFile();
  
-      while (lengthMap == -1431655760)
+      while (lengthMap < 1)
       {
         printf("File yang Anda masukan tidak sesuai.\n");
         readFile();
@@ -73,7 +73,7 @@ void MainMenu()
       cekCommand = true;
       lengthMap = 0;
       loadFile();
-      while (lengthMap == -1431655760)
+      while (lengthMap < 1)
       {
         printf("File yang Anda masukan tidak sesuai.\n");
         loadFile();
