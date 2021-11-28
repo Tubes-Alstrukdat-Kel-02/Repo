@@ -274,6 +274,7 @@ void mesinWaktu(int playerTurn, int langkah, addressList p) {
                     switch(pilihan_teleport) {
                     case (1):
                         printf("\n%s menggunakan buff Imunitas Teleport! %s tetap berada pada petak %d.\n", playerName[target_player], playerName[target_player], moveLocation);
+                        BuffImmune[target_player] = 0;
                         break;
                     case (0):
                         printf("\n%s tidak menggunakan buff Imunitas Teleport! %s teleport ke petak %d.\n", playerName[target_player], playerName[target_player], teleportLocation);
@@ -348,6 +349,7 @@ void baling2Jambu(int playerTurn, int langkah, addressList p) {
                     switch(pilihan_teleport) {
                     case (1):
                         printf("\n%s menggunakan buff Imunitas Teleport! %s tetap berada pada petak %d.\n", playerName[target_player], playerName[target_player], moveLocation);
+                        BuffImmune[target_player] = 0;
                         break;
                     case (0):
                         printf("\n%s tidak menggunakan buff Imunitas Teleport! %s teleport ke petak %d.\n", playerName[target_player], playerName[target_player], teleportLocation);
