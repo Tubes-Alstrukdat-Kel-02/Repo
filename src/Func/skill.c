@@ -8,12 +8,15 @@
 #include <time.h>
 #include <math.h>
 
+extern int HalfMaxRoll;
+
 void skill_menu(int playerTurn) {
   printf("Kamu memiliki skill :\n");
   if (NBElmtList(skill_list[playerTurn]) != 0) {
       show_skill_list(playerTurn);
   } else {
       printf("Maaf, anda tidak memiliki skill yang dapat dipakai.\n");
+      inputCommand();
   }
   printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill.\n\n");
   printf("Masukkan skill : ");
@@ -375,13 +378,13 @@ void cerminGanda(int playerTurn) {
 void senterPembesarHoki(int playerTurn) {
     BuffPembesar[playerTurn] = 1;
     printf("\n%s memakai skill Senter Pembesar Hoki.\n", playerName[playerTurn]);
-    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", floor(MaxRoll/2), MaxRoll);
+    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", HalfMaxRoll, MaxRoll);
 }
 
 void senterPengecilHoki(int playerTurn) {
     BuffPengecil[playerTurn] = 1;
     printf("\n%s memakai skill Senter Pengecil Hoki.\n", playerName[playerTurn]);
-    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", 1, floor(MaxRoll/2));
+    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", 1, HalfMaxRoll);
 }
 
 void mesinPenukarPosisi(int playerTurn) {

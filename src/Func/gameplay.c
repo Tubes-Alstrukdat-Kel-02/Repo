@@ -168,6 +168,7 @@ void inputCommand() {
   printf("6. Save\n");
   printf("7. End Turn\n");
   printf("8. Undo\n");
+  printf("9. Exit\n");
   commandSwitchCase();
 }
 
@@ -175,8 +176,8 @@ void commandSwitchCase() {
   printf("\nMasukkan command: ");
   scanf("%d", &command);
   printf("\n");
-  while (command < 1 || command > 8) {
-    printf("Input tidak valid, harap masukkan bilangan 1-8.\n");
+  while (command < 1 || command > 9) {
+    printf("Input tidak valid, harap masukkan bilangan 1-9.\n");
     printf("\nMasukkan command: ");
     scanf("%d", &command);
     printf("\n");
@@ -239,6 +240,15 @@ void commandSwitchCase() {
       printf("Fitur Undo belum dibuat.\n");
       commandSwitchCase();
       break;
+    case 9:
+      printf("Terima kasih telah memainkan permainan MOBITANGGA\n");
+      printf("Bye bye........\n");
+
+      time_t start, end;  
+      time(&start);
+      do time(&end); while(difftime(end, start) <= 1.5);
+
+      exit(0);
   }
 }
 

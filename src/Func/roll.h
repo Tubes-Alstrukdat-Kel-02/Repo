@@ -11,7 +11,6 @@ int rollResult;
 
 void roll();
 
-int senterPembesarExist, senterPengecilExist;
 int rollResult;
 
 void diceRoll(); // done

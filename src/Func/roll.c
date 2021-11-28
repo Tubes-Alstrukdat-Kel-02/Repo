@@ -8,7 +8,9 @@
 #include <time.h>
 
 // KALO SKILL UDAH BERES
-int imunitasTeleport = 1;
+// int BuffImmune[playerTurn];
+// int BuffPembesar[playerTurn];
+// int BuffPengecil[playerTurn];
 
 extern int MaxRoll;
 extern int HalfMaxRoll;
@@ -22,16 +24,16 @@ void roll() {
     hasMoved = true;
 }
 
-// Perlu memiliki nilai senterPembesarExist, senterPengecilExist (dari Skill/Buff (Ryu))
+// Perlu memiliki nilai BuffPembesar[playerTurn], BuffPengecil[playerTurn] (dari Skill/Buff (Ryu))
 
 void diceRoll() {
-  if (senterPembesarExist) {
+  if (BuffPembesar[playerTurn]) {
     srand(time(NULL));
     rollResult = (rand() % (MaxRoll + 1 - HalfMaxRoll) + HalfMaxRoll);
-  } else if (senterPengecilExist) {
+  } else if (BuffPengecil[playerTurn]) {
     srand(time(NULL));
     rollResult = (rand() % (HalfMaxRoll + 1 - 1) + 1);
-  } else if (!senterPembesarExist && !senterPengecilExist) {
+  } else if (!BuffPembesar[playerTurn] && !BuffPengecil[playerTurn]) {
     srand(time(NULL));
     rollResult = (rand() % (MaxRoll + 1 - 1) + 1);
   }
@@ -68,7 +70,7 @@ void moveOption() {
     }
     switch (moveChoice) {
       case 1:
-        if (GetElmt(Teleporter, backwardLocation-1) != 0 && imunitasTeleport == 0) {
+        if (GetElmt(Teleporter, backwardLocation-1) != 0 && BuffImmune[playerTurn] == 0) {
           printf("%s mundur %d langkah.\n", playerName[playerTurn], rollResult);
           printf("%s berada di %d.\n", playerName[playerTurn], backwardLocation);
           printf("%s menemukan teleporter.\n", playerName[playerTurn]);
@@ -76,7 +78,7 @@ void moveOption() {
           printf("%s teleport ke petak %d.\n", playerName[playerTurn], GetElmt(Teleporter, backwardLocation-1));
           movePlayer(GetElmt(Teleporter, backwardLocation-1));
           break;
-        } else if (GetElmt(Teleporter, backwardLocation-1) != 0 && imunitasTeleport == 1) {
+        } else if (GetElmt(Teleporter, backwardLocation-1) != 0 && BuffImmune[playerTurn] == 1) {
           printf("%s mundur %d langkah.\n", playerName[playerTurn], rollResult);
           printf("%s berada di %d.\n", playerName[playerTurn], backwardLocation);
           printf("%s menemukan teleporter.\n", playerName[playerTurn]);
@@ -88,7 +90,7 @@ void moveOption() {
           break;
         }
       case 2:
-        if (GetElmt(Teleporter, forwardLocation-1) != 0 && imunitasTeleport == 0) {
+        if (GetElmt(Teleporter, forwardLocation-1) != 0 && BuffImmune[playerTurn] == 0) {
           printf("%s maju %d langkah.\n", playerName[playerTurn], rollResult);
           printf("%s berada di %d.\n", playerName[playerTurn], forwardLocation);
           printf("%s menemukan teleporter.\n", playerName[playerTurn]);
@@ -96,7 +98,7 @@ void moveOption() {
           printf("%s teleport ke petak %d.\n", playerName[playerTurn], GetElmt(Teleporter, forwardLocation-1));
           movePlayer(GetElmt(Teleporter, forwardLocation-1));
           break;
-        } else if (GetElmt(Teleporter, forwardLocation-1) != 0 && imunitasTeleport == 1) {
+        } else if (GetElmt(Teleporter, forwardLocation-1) != 0 && BuffImmune[playerTurn] == 1) {
           printf("%s maju %d langkah.\n", playerName[playerTurn], rollResult);
           printf("%s berada di %d.\n", playerName[playerTurn], forwardLocation);
           printf("%s menemukan teleporter.\n", playerName[playerTurn]);
@@ -114,7 +116,7 @@ void moveOption() {
     printf("%s berada di %d.\n", playerName[playerTurn], forwardLocation);
     if (GetElmt(Teleporter, backwardLocation-1) != 0) {
       printf("%s menemukan teleporter.\n", playerName[playerTurn]);
-      if (imunitasTeleport == 0) {
+      if (BuffImmune[playerTurn] == 0) {
         printf("%s tidak memiliki imunitas teleport.\n", playerName[playerTurn]);
         printf("%s teleport ke petak %d.\n", playerName[playerTurn], GetElmt(Teleporter, forwardLocation-1));
         movePlayer(GetElmt(Teleporter, forwardLocation-1));
@@ -131,7 +133,7 @@ void moveOption() {
     printf("%s berada di %d.\n", playerName[playerTurn], backwardLocation);
     if (GetElmt(Teleporter, backwardLocation-1) != 0) {
       printf("%s menemukan teleporter.\n", playerName[playerTurn]);
-      if (imunitasTeleport == 0) {
+      if (BuffImmune[playerTurn] == 0) {
         printf("%s tidak memiliki imunitas teleport.\n", playerName[playerTurn]);
         printf("%s teleport ke petak %d.\n", playerName[playerTurn], GetElmt(Teleporter, backwardLocation-1));
         movePlayer(GetElmt(Teleporter, backwardLocation-1));
@@ -171,6 +173,7 @@ void immuneOptions(int location) {
     immuneSwitch(location);
   } else if (teleportStrChoice == 'n' || teleportStrChoice == 'N') {
     teleportBoolChoice = 0;
+    BuffImmune[playerTurn] = 0;
     immuneSwitch(location);
   } else {
     printf("Jawaban tidak valid.\n");

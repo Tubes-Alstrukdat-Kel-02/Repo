@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "SaveLoad.h"
 #include <string.h>
+#include <math.h>
 static FILE * pita;
 
 TabInt Layout_Map, Teleporter;
@@ -57,6 +58,7 @@ void readFile()
 
     STARTKATA(fp);
     MaxRoll = StrToInt(CKata);
+    HalfMaxRoll = ceil(MaxRoll/2);
 
     STARTKATA(fp);
     TotalTeleport = StrToInt(CKata);
@@ -234,6 +236,7 @@ void loadFile()
 
     STARTKATA(fp);
     MaxRoll = StrToInt(CKata);
+    HalfMaxRoll = ceil(MaxRoll/2);
 
     STARTKATA(fp);
     TotalTeleport = StrToInt(CKata);
