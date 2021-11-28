@@ -114,7 +114,7 @@ void moveOption() {
     printf("%s bisa maju.\n", playerName[playerTurn]);
     printf("%s maju %d langkah.\n", playerName[playerTurn], rollResult);
     printf("%s berada di %d.\n", playerName[playerTurn], forwardLocation);
-    if (GetElmt(Teleporter, backwardLocation-1) != 0) {
+    if (GetElmt(Teleporter, forwardLocation-1) != 0) {
       printf("%s menemukan teleporter.\n", playerName[playerTurn]);
       if (BuffImmune[playerTurn] == 0) {
         printf("%s tidak memiliki imunitas teleport.\n", playerName[playerTurn]);
