@@ -244,7 +244,7 @@ void commandSwitchCase() {
         PopStack(&undoState, &InfoTopStack(undoState));
       }
       for (int i = 0; i < nbPlayer; i++){
-        playerLocation[nbPlayer-i] = (undoState).T[((undoState).TOP)-i];
+        playerLocation[nbPlayer-1-i] = (undoState).T[((undoState).TOP)-i];
       }
       break;
     case 9:
