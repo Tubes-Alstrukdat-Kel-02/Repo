@@ -166,8 +166,14 @@ void commandSwitchCase() {
   }
   switch (command){
     case 1:
-      skill_menu(playerTurn);
-      break;
+      if (hasMoved) {
+        printf("Sudah melakukan roll. Tidak bisa mengakses menu skill.\n");
+        commandSwitchCase();
+        break;
+      } else {
+        skill_menu(playerTurn);
+        break;
+      }
     case 2:
       MAP();
       commandSwitchCase();
