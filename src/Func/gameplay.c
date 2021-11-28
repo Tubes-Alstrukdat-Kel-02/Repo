@@ -59,7 +59,7 @@ void MainMenu()
 
       lengthMap = 0;
       readFile();
- 
+      printf("%d\n", lengthMap);
       while (lengthMap == -1431655760)
       {
         printf("File yang Anda masukan tidak sesuai.\n");

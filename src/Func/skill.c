@@ -8,6 +8,8 @@
 #include <time.h>
 #include <math.h>
 
+extern int HalfMaxRoll;
+
 void skill_menu(int playerTurn) {
   printf("Kamu memiliki skill :\n");
   if (NBElmtList(skill_list[playerTurn]) != 0) {
@@ -271,6 +273,7 @@ void mesinWaktu(int playerTurn, int langkah, addressList p) {
                     switch(pilihan_teleport) {
                     case (1):
                         printf("\n%s menggunakan buff Imunitas Teleport! %s tetap berada pada petak %d.\n", playerName[target_player], playerName[target_player], moveLocation);
+                        BuffImmune[target_player] = 0;
                         break;
                     case (0):
                         printf("\n%s tidak menggunakan buff Imunitas Teleport! %s teleport ke petak %d.\n", playerName[target_player], playerName[target_player], teleportLocation);
@@ -345,6 +348,7 @@ void baling2Jambu(int playerTurn, int langkah, addressList p) {
                     switch(pilihan_teleport) {
                     case (1):
                         printf("\n%s menggunakan buff Imunitas Teleport! %s tetap berada pada petak %d.\n", playerName[target_player], playerName[target_player], moveLocation);
+                        BuffImmune[target_player] = 0;
                         break;
                     case (0):
                         printf("\n%s tidak menggunakan buff Imunitas Teleport! %s teleport ke petak %d.\n", playerName[target_player], playerName[target_player], teleportLocation);
@@ -375,13 +379,13 @@ void cerminGanda(int playerTurn) {
 void senterPembesarHoki(int playerTurn) {
     BuffPembesar[playerTurn] = 1;
     printf("\n%s memakai skill Senter Pembesar Hoki.\n", playerName[playerTurn]);
-    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", floor(MaxRoll/2), MaxRoll);
+    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", HalfMaxRoll, MaxRoll);
 }
 
 void senterPengecilHoki(int playerTurn) {
     BuffPengecil[playerTurn] = 1;
     printf("\n%s memakai skill Senter Pengecil Hoki.\n", playerName[playerTurn]);
-    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", 1, floor(MaxRoll/2));
+    printf("Dadu akan mengeluarkan angka %d sampai %d!\n", 1, HalfMaxRoll);
 }
 
 void mesinPenukarPosisi(int playerTurn) {
