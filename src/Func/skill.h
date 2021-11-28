@@ -6,6 +6,7 @@
 
 List skill_list[5];
 int no_pilihan, switch_place, target_player;
+boolean pilihan_teleport;
 
 void skill_menu (int playerTurn);
 // untuk menampilkan menu skill pada saat turn player
@@ -29,10 +30,10 @@ void gacha_skill(int playerTurn);
 void pintuGaKeMana2(int playerTurn);
 // untuk skill Pintu ga ke mana mana
 
-void mesinWaktu(int playerTurn, int langkah);
+void mesinWaktu(int playerTurn, int langkah, addressList p);
 // untuk skill Mesin waktu
 
-void baling2Jambu(int playerTurn, int langkah);
+void baling2Jambu(int playerTurn, int langkah, addressList p);
 // untuk skill Baling baling jambu
 
 void cerminGanda(int playerTurn);

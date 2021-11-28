@@ -1,6 +1,7 @@
 #include "gameplay.h"
 #include "skill.h"
 #include "map.h"
+#include "roll.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -29,10 +30,10 @@ void skill_menu(int playerTurn) {
               break;
           }
       case (2) : //Mesin waktu
-          mesinWaktu(playerTurn, Amount(p));
+          mesinWaktu(playerTurn, Amount(p), p);
           break;
       case (3) : //Baling baling jambu
-          baling2Jambu(playerTurn, Amount(p));
+          baling2Jambu(playerTurn, Amount(p), p);
           break;
       case (4) : //Cermin pengganda
           if (NBElmtList(skill_list[playerTurn]) <= 9 /*nanti ditambah kriteria 1/turn*/) {
@@ -211,52 +212,152 @@ void pintuGaKeMana2(int playerTurn) {
     printf("%s mendapatkan buff imunitas teleport!\n", playerName[playerTurn]);
 }
 
-void mesinWaktu(int playerTurn, int langkah) {
-    printf("\n%s memakai skill Mesin Waktu %d.\n", playerName[playerTurn], langkah);
-    int loop = 1;
-    while (loop == 1) {
+void mesinWaktu(int playerTurn, int langkah, addressList p) {
+    printf("\n%s memakai skill Mesin Waktu %d.\n\n", playerName[playerTurn], langkah);
+    int loop_pilih_target = 1;
+    while (loop_pilih_target == 1) {
         printf("Pilih pemain yang ingin dimundurkan :\n");
         for(int i = 0; i < nbPlayer; i++) {
             if (i != playerTurn) {
                 printf("%d. %s\n", i+1, playerName[i]);
             } 
         }
-        printf("Tekan 0 untuk kembali ke menu skill.");
+        printf("Tekan 0 untuk kembali ke menu skill.\n");
         printf("\nMasukkan pemain (angka) : ");
         scanf("%d", &target_player);
-        if ((target_player > nbPlayer) || (target_player < 0)) {
-            printf("Masukan tidak valid. Mohon masukkan nomor pemain yang valid.\n\n");
+        if ((target_player > nbPlayer) || (target_player < 0) || ((target_player-1) == playerTurn)) {
+            printf("\nMasukan tidak valid. Mohon masukkan nomor pemain yang valid.\n\n");
         } else if (target_player == 0) {
-            loop = 0;
+            loop_pilih_target = 0;
+            printf("\n");
             skill_menu(playerTurn);
         } else {
             target_player = target_player - 1;
-            //ditambah nanti buat skill lanjutan
+            int moveLocation = playerLocation[target_player] - langkah;
+            int checkMoveLocation;
+            for (int i = 0; i < Layout_Map.Neff; i++) {
+                if (moveLocation == Layout_Map.TI[i] && moveLocation != 0) {
+                    checkMoveLocation = 1;
+                }
+            }
+            if (checkMoveLocation == 1) {
+                loop_pilih_target = 0;
+                moveOtherPlayer(target_player, moveLocation);
+                printf("\n%s dimundurkan sebanyak %d langkah!\n", playerName[target_player], langkah);
+                printf("%s sekarang berada pada petak %d.\n", playerName[target_player], moveLocation);
+                int teleportLocation = GetElmt(Teleporter, moveLocation-1);
+                int imunitasTeleport = 1; //buang ini nanti kalo buff dah jadi
+                if ((teleportLocation != 0) && (imunitasTeleport == 0 /*buff imunitas cek di sini*/)) {
+                    printf("Ada teleporter pada petak %d! %s teleport ke petak %d", moveLocation, playerName[target_player], teleportLocation);
+                    moveOtherPlayer(target_player, teleportLocation);
+                } else if ((teleportLocation != 0) && (imunitasTeleport == 1 /*buff imunitas cek di sini*/)) {
+                    printf("Ada teleporter pada petak %d! Anda memiliki buff Imunitas Teleport.\n", moveLocation);
+                    int loop_check = 1;
+                    while (loop_check == 1) {
+                        printf("\nGunakan buff Imunitas Teleport? (Y/N) : ");
+                        char check;
+                        scanf("%s", &check);
+                        if ((check == 'Y') || (check == 'y')) {
+                            pilihan_teleport = 1;
+                            loop_check = 0;
+                        } else if ((check == 'N') || (check == 'n')) {
+                            pilihan_teleport = 0;
+                            loop_check = 0;
+                        } else {
+                            printf("Masukan tidak valid. Mohon hanya masukkan (Y/N).\n");
+                        }
+                    }
+                    switch(pilihan_teleport) {
+                    case (1):
+                        printf("\n%s menggunakan buff Imunitas Teleport! %s tetap berada pada petak %d.\n", playerName[target_player], playerName[target_player], moveLocation);
+                        break;
+                    case (0):
+                        printf("\n%s tidak menggunakan buff Imunitas Teleport! %s teleport ke petak %d.\n", playerName[target_player], playerName[target_player], teleportLocation);
+                        moveOtherPlayer(target_player, teleportLocation);
+                        break;
+                    }
+                    DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+                } else {
+                    printf("Tidak ada teleporter pada petak %d\n", moveLocation);
+                }
+            } else {
+                printf("\nPlayer yang anda pilih tidak bisa dimundurkan!\n\n");
+            }
         }
     }
 }
 
-void baling2Jambu(int playerTurn, int langkah) {
-    printf("\n%s memakai skill Baling Baling Jambu %d.\n", playerName[playerTurn], langkah);
-    int loop = 1;
-    while (loop == 1) {
+void baling2Jambu(int playerTurn, int langkah, addressList p) {
+    printf("\n%s memakai skill Baling Baling Jambu %d.\n\n", playerName[playerTurn], langkah);
+    int loop_pilih_target = 1;
+    while (loop_pilih_target == 1) {
         printf("Pilih pemain yang ingin dimajukan :\n");
         for(int i = 0; i < nbPlayer; i++) {
             if (i != playerTurn) {
                 printf("%d. %s\n", i+1, playerName[i]);
             } 
         }
-        printf("Tekan 0 untuk kembali ke menu skill.");
+        printf("Tekan 0 untuk kembali ke menu skill.\n");
         printf("\nMasukkan pemain (angka) : ");
         scanf("%d", &target_player);
-        if ((target_player > nbPlayer) || (target_player < 0)) {
-            printf("Masukan tidak valid. Mohon masukkan nomor pemain yang valid.\n\n");
+        if ((target_player > nbPlayer) || (target_player < 0) || ((target_player-1) == playerTurn)) {
+            printf("\nMasukan tidak valid. Mohon masukkan nomor pemain yang valid.\n\n");
         } else if (target_player == 0) {
-            loop = 0;
+            loop_pilih_target = 0;
+            printf("\n");
             skill_menu(playerTurn);
         } else {
             target_player = target_player - 1;
-            //ditambah nanti buat skill lanjutan
+            int moveLocation = playerLocation[target_player] + langkah;
+            int checkMoveLocation;
+            for (int i = 0; i < Layout_Map.Neff; i++) {
+                if (moveLocation == Layout_Map.TI[i] && moveLocation != 0) {
+                    checkMoveLocation = 1;
+                }
+            }
+            if (checkMoveLocation == 1) {
+                loop_pilih_target = 0;
+                moveOtherPlayer(target_player, moveLocation);
+                printf("\n%s dimajukan sebanyak %d langkah!\n", playerName[target_player], langkah);
+                printf("%s sekarang berada pada petak %d.\n", playerName[target_player], moveLocation);
+                int teleportLocation = GetElmt(Teleporter, moveLocation-1);
+                int imunitasTeleport = 1; //buang ini nanti kalo buff dah jadi
+                if ((teleportLocation != 0) && (imunitasTeleport == 0 /*buff imunitas cek di sini*/)) {
+                    printf("Ada teleporter pada petak %d! %s teleport ke petak %d", moveLocation, playerName[target_player], teleportLocation);
+                    moveOtherPlayer(target_player, teleportLocation);
+                } else if ((teleportLocation != 0) && (imunitasTeleport == 1 /*buff imunitas cek di sini*/)) {
+                    printf("Ada teleporter pada petak %d! Anda memiliki buff Imunitas Teleport.\n", moveLocation);
+                    int loop_check = 1;
+                    while (loop_check == 1) {
+                        printf("\nGunakan buff Imunitas Teleport? (Y/N) : ");
+                        char check;
+                        scanf("%s", &check);
+                        if ((check == 'Y') || (check == 'y')) {
+                            pilihan_teleport = 1;
+                            loop_check = 0;
+                        } else if ((check == 'N') || (check == 'n')) {
+                            pilihan_teleport = 0;
+                            loop_check = 0;
+                        } else {
+                            printf("Masukan tidak valid. Mohon hanya masukkan (Y/N).\n");
+                        }
+                    }
+                    switch(pilihan_teleport) {
+                    case (1):
+                        printf("\n%s menggunakan buff Imunitas Teleport! %s tetap berada pada petak %d.\n", playerName[target_player], playerName[target_player], moveLocation);
+                        break;
+                    case (0):
+                        printf("\n%s tidak menggunakan buff Imunitas Teleport! %s teleport ke petak %d.\n", playerName[target_player], playerName[target_player], teleportLocation);
+                        moveOtherPlayer(target_player, teleportLocation);
+                        break;
+                    }
+                    DelP(&skill_list[playerTurn], Skill_id(p), Amount(p));
+                } else {
+                    printf("Tidak ada teleporter pada petak %d\n", moveLocation);
+                }
+            } else {
+                printf("\nPlayer yang anda pilih tidak bisa dimajukan!\n\n");
+            }
         }
     }
 }
