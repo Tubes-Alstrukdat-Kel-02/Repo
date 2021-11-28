@@ -166,7 +166,7 @@ void loadFile()
     CreateMap(&Layout_Map);
     CreateMap(&Teleporter);
     CreateEmptyQueue(&playerQueue, 5);
-    CreateEmpty(&skill_list[5]);
+    CreateEmptyList(&skill_list[5]);
 
     char name[50];
     char filename[100];
@@ -262,9 +262,9 @@ void loadFile()
             ADVKATA();
             Amount = StrToInt(CKata);
 
-            addressList P = Alokasi (Skill_id, Amount);
+            addressList P = Alokasi_List (Skill_id, Amount);
 
-            InsertLast(&skill_list[m], P);
+            InsertLast_List(&skill_list[m], P);
         }
 
         //ADVKATA();

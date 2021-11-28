@@ -4,7 +4,7 @@
 #include "../ADT/mesin_kata.h"
 #include "../ADT/mesin_kar.h"
 #include "../ADT/queueRenamed.h"
-#include "../ADT/listdp_skill.h"
+#include "../ADT/listlinier_skill.h"
 #include "../ADT/boolean.h"
 #include "map.h"
 #include "skill.h"
