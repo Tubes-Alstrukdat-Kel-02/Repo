@@ -4,7 +4,6 @@
 #include "gameplay.h"
 #include "skill.h"
 #include "SaveLoad.h"
-#include "undo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -45,7 +44,6 @@ void MainMenu()
   if (commandMain == 1)
   {
     initializePlayerQueue();
-    initializeStack(undoState);
     printf("\n");
     readFile();
     cekCommand = true;
@@ -113,8 +111,7 @@ void roundLoop() {
     MAP();
 
     turnLoop();
-  } while (playerLocation[playerTurn] != lengthMap);
-  insertPlayerLocation(undoState,nbPlayer,playerLocation); //masukin lokasi player tiap ronde
+  } while (playerLocation[playerTurnRn] != lengthMap);
 }
 
 void turnLoop() {
@@ -204,7 +201,7 @@ void commandSwitchCase() {
       }
     case 8:
       printf("Fitur Undo belum dibuat.\n");
-      undo(undoState); //Kembali ke state ronde sebelumnya
+      commandSwitchCase();
       break;
   }
 }
