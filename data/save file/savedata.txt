@@ -1,0 +1,29 @@
+20 					// Panjang Peta
+...#..#...##..#...#. 			// Peta
+10 					// MaxRoll
+10 					// Banyak Teleport
+3 20 					// Petak awal dan akhir Teleport
+5 20 					// Petak awal dan akhir Teleport
+6 20 					// Petak awal dan akhir Teleport
+8 20 					// Petak awal dan akhir Teleport
+9 20 					// Petak awal dan akhir Teleport
+10 20 					// Petak awal dan akhir Teleport
+13 20 					// Petak awal dan akhir Teleport
+16 20 					// Petak awal dan akhir Teleport
+17 20 					// Petak awal dan akhir Teleport
+18 20 					// Petak awal dan akhir Teleport
+4 					// Banyaknya pemain
+2 					// Round
+1 					// Playerturn (pemain yang sedang melakukan giliran)
+november 14 2 				// nama, lokasi, skill yang dimiliki pemain
+2 5 					// id skill, amount
+2 5 					// id skill, amount
+0 0 0 0 				// Buff
+nubes 3 2 				// nama, lokasi, skill yang dimiliki pemain
+2 5 					// id skill, amount
+2 5 					// id skill, amount
+0 0 0 0 				// Buff
+nangis 2 0 				// nama, lokasi, skill yang dimiliki pemain
+0 0 0 0 				// Buff
+ngelu 6 0 				// nama, lokasi, skill yang dimiliki pemain
+0 0 0 0 				// Buff
