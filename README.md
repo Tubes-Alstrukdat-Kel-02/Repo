@@ -1,4 +1,4 @@
-# Tubes-AlStrukDat
+# Tubes-AlStrukDat-Kelompok-02
 
 ## Deskripsi Singkat
 Program Mobitangga adalah permainan berbasis command-line interface (CLI) yang menggabungkan game ular tangga dengan modifikasi-modifikasi tambahan. Modifikasi dari ular tangga biasa ini ditunjukan dengan adanya fitur yaitu skill beserta buff yang beragam dengan keunggulannya masing-masing yang juga bervariasi.
@@ -24,7 +24,7 @@ Demo dapat dilihat [disini](https://replit.com/@18219076Yahya/Repo)
      - Skill/buff player direset setiap ronde.
   6. Pemain yang berhasil menuju ke titik akhir / finish line menjadi pemenang.
 
-## Identitas Anggota Kelompok
+## Identitas Anggota Kelompok 2
 - Yahya Aqrom............(18219076)	 
 - Joanna Margareth Nauli.(18220007)
 - Joshi Ryu Setiady......(18220025)
