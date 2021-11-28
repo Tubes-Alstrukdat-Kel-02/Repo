@@ -25,12 +25,12 @@ Demo dapat dilihat [disini](https://replit.com/@18219076Yahya/Repo)
   6. Pemain yang berhasil menuju ke titik akhir / finish line menjadi pemenang.
 
 ## Identitas Anggota Kelompok 2
-- Yahya Aqrom............(18219076)	 
-- Joanna Margareth Nauli.(18220007)
-- Joshi Ryu Setiady......(18220025)
-- Rachmad Hidayat........(18220049)
-- Alya Apriliyanti.......(18220050)
-- Ahmad Wafika Samsea....(18220088)
+- Yahya Aqrom (18219076)	 
+- Joanna Margareth Nauli (18220007)
+- Joshi Ryu Setiady (18220025)
+- Rachmad Hidayat (18220049)
+- Alya Apriliyanti (18220050)
+- Ahmad Wafika Samsea (18220088)
 
 ## Cara Compile
 - Di linux: 
