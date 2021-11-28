@@ -4,13 +4,17 @@
 static FILE * pita;
 
 TabInt Layout_Map, Teleporter;
+Queue playerQueue;
 int lengthMap;
 int MaxRoll;
 int HalfMaxRoll;
 int TotalTeleport;
 List skill_list[5];
+int Round;
+int playerTurn;
+Queue playerQueue;
 
-void ReadFile()
+void readFile()
 {
     CreateMap(&Layout_Map);
     CreateMap(&Teleporter);
@@ -46,6 +50,7 @@ void ReadFile()
         }
         Layout_Map.Neff = Layout_Map.Neff+1;
     } 
+    memset( CKata.TabKata, '\0', sizeof(CKata.TabKata));
 
     STARTKATA(fp);
     MaxRoll = StrToInt(CKata);
@@ -74,7 +79,7 @@ void ReadFile()
     fclose(fp);
 }
 
-void SaveFile()
+void saveFile()
 {
     char name[50];
     FILE *fp;
@@ -127,8 +132,14 @@ void SaveFile()
 
     // Baris ke-6 jumlah pemain
     fprintf(fp, "%d\n", nbPlayer);
+
+    // Baris ke-7 round saat disave
+    fprintf(fp, "%d\n", Round);
+
+    // Baris ke-8 player yang akan bermain
+    fprintf(fp, "%d\n", playerTurn);
     
-    // Baris ke-7 sampai selesai data pemain
+    // Baris ke-9 sampai selesai data pemain
     int k; 
     for(k = 0; k < nbPlayer; k++)
     {   
@@ -150,18 +161,21 @@ void SaveFile()
     fclose(fp);
 }
 
-void LoadFile() //belum kelar
+void loadFile()
 {
     CreateMap(&Layout_Map);
     CreateMap(&Teleporter);
+    CreateEmptyQueue(&playerQueue, 5);
+    CreateEmpty(&skill_list[5]);
 
     char name[50];
     char filename[100];
-    printf("Masukan nama file konfigurasi : ");
+    printf("Masukan nama save file yang akan di load : ");
     scanf("%s", name);
 
     strcat(filename, "../../data/");
     strcat(filename, name);
+    strcat(filename, ".txt");
 
     FILE *fp;
     fp = fopen(filename, "r");
@@ -184,7 +198,8 @@ void LoadFile() //belum kelar
             SetMap(&Layout_Map, i, 0);
         }
         Layout_Map.Neff = Layout_Map.Neff+1;
-    } 
+    }
+    memset( CKata.TabKata, '\0', sizeof(CKata.TabKata));
 
     STARTKATA(fp);
     MaxRoll = StrToInt(CKata);
@@ -210,6 +225,51 @@ void LoadFile() //belum kelar
         }
     }
 
-    // lanjutin ngeload savenya
+    STARTKATA(fp);
+    nbPlayer = StrToInt(CKata);
+
+    STARTKATA(fp);
+    Round = StrToInt(CKata);
+
+    STARTKATA(fp);
+    playerTurn = StrToInt(CKata);
+
+    int k;
+    for(k = 0; k < nbPlayer; k++) 
+    {   
+        int nbElmtSkill;
+
+        STARTKATA(fp);
+
+        strcpy(playerName[k], CKata.TabKata);
+        memset( CKata.TabKata, '\0', sizeof(CKata.TabKata));
+
+        ADVKATA();
+        playerLocation[k] = StrToInt(CKata);
+
+        ADVKATA();
+        nbElmtSkill = StrToInt(CKata);
+
+        AddElmtQueue(&playerQueue, k);
+
+        int m;
+        for (m = 0; m < nbElmtSkill; m++) 
+        {
+            int Skill_id, Amount;
+
+            STARTKATA(fp);
+            Skill_id = StrToInt(CKata);
+            ADVKATA();
+            Amount = StrToInt(CKata);
+
+            addressList P = Alokasi (Skill_id, Amount);
+
+            InsertLast(&skill_list[m], P);
+        }
+
+        //ADVKATA();
+        //activeBuff = ;
+    }
+
     fclose(fp);
 }

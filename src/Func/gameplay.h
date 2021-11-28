@@ -17,6 +17,7 @@ extern int lengthMap;
 extern TabInt Layout_Map, Teleporter;
 extern int MaxRoll;
 extern int TotalTeleport;
+extern int Round;
 
 void welcomeGame();
 /* Pembuka game */
@@ -45,4 +46,6 @@ void commandSwitchCase();
 void playerWin(); // done
 /* Pemain telah memenangkan permainan */
 
+void rankPlayer();
+/* Menampilkan ranking pemain */
 #endif

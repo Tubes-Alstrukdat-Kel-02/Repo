@@ -13,13 +13,18 @@ TabInt Layout_Map, Teleporter;
 int lengthMap;
 int MaxRoll;
 int TotalTeleport;
+int Round;
 List skill_list[5];
 
 int main() {
   welcomeGame();
   MainMenu();
-  roundLoop();
-  playerWin();
-  MainMenu();
+  while ( commandMain != 3)
+  {
+    roundLoop();
+    playerWin();
+    rankPlayer();
+    MainMenu();
+  }
   return 0;
 }
