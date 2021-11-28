@@ -2,7 +2,7 @@
 #define skill_H
 
 #include "../ADT/boolean.h"
-#include "../ADT/listdp_skill.h"
+#include "../ADT/listlinier_skill.h"
 
 List skill_list[5];
 int no_pilihan, switch_place, target_player;
@@ -13,7 +13,6 @@ void skill_menu (int playerTurn);
 
 void check_jumlah_skill(int playerTurn);
 // untuk mengecek jumlah skill yg dipunya dan menentukan apakah dapat mendapat skill baru atau tidak. Bila bisa maka akan menggacha skill di sini.
-
 
 int roll_skill_langkah (int MaxRoll);
 // untuk menggacha berapa langkah untuk modifier baling-baling jambu dan mesin waktu
