@@ -9,7 +9,6 @@
 #include <time.h>
 
 int lengthMap;
-TabInt wait;
 
 void welcomeGame()
 {
@@ -51,9 +50,8 @@ void MainMenu()
   }
     else if (commandMain == 2)
   {
-          // Function Load belum dibuat
-    loadFile();
     cekCommand = true;
+    loadFile();
   }
   else if (commandMain == 3)
   {

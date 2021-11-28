@@ -12,6 +12,7 @@ int TotalTeleport;
 List skill_list[5];
 int Round;
 int playerTurn;
+Queue playerQueue;
 
 void readFile()
 {
@@ -49,6 +50,7 @@ void readFile()
         }
         Layout_Map.Neff = Layout_Map.Neff+1;
     } 
+    memset( CKata.TabKata, '\0', sizeof(CKata.TabKata));
 
     STARTKATA(fp);
     MaxRoll = StrToInt(CKata);
@@ -196,8 +198,8 @@ void loadFile()
             SetMap(&Layout_Map, i, 0);
         }
         Layout_Map.Neff = Layout_Map.Neff+1;
-    } 
-    strset(CKata.TabKata, '\0');
+    }
+    memset( CKata.TabKata, '\0', sizeof(CKata.TabKata));
 
     STARTKATA(fp);
     MaxRoll = StrToInt(CKata);
@@ -240,7 +242,7 @@ void loadFile()
         STARTKATA(fp);
 
         strcpy(playerName[k], CKata.TabKata);
-        strset(CKata.TabKata, '\0');
+        memset( CKata.TabKata, '\0', sizeof(CKata.TabKata));
 
         ADVKATA();
         playerLocation[k] = StrToInt(CKata);
@@ -257,7 +259,6 @@ void loadFile()
 
             STARTKATA(fp);
             Skill_id = StrToInt(CKata);
-            
             ADVKATA();
             Amount = StrToInt(CKata);
 
@@ -265,6 +266,10 @@ void loadFile()
 
             InsertLast(&skill_list[m], P);
         }
+
+        //ADVKATA();
+        //activeBuff = ;
     }
+
     fclose(fp);
 }
