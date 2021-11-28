@@ -18,7 +18,7 @@ boolean IsEmptyStack (Stack S)
 boolean IsFullStack (Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
-	return TopStack(S)==MaxEl;
+	return TopStack(S)==MaxElStack;
 }
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
 void PushStack (Stack * S, infotype X)

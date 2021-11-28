@@ -11,7 +11,7 @@ void insertPlayerLocation(Stack undoState, int nbPlayer, int playerLocation[5]){
 }
 
 void undo(Stack undoState){
-    PopStack(&undoState, InfoTopStack(undoState));
+    PopStack(&undoState, &InfoTopStack(undoState));
     for (int i = 0; i < nbPlayer; i++){
         playerLocation[i] = InfoTopStack(undoState);
     }
@@ -20,4 +20,3 @@ void undo(Stack undoState){
 void initializeStack(Stack undoState){
     CreateEmptyStack(&undoState);
 }
-
